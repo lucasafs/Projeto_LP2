@@ -10,7 +10,7 @@ public class Controller
     private Map<String, Pessoa> pessoaMap;
 
     public Controller(){
-        Controller controller = new Controller();
+        this.pessoaMap = new HashMap<>();
     }
 
     public boolean cadastrarPessoa(String nome, String dni, String estado, String interesses){
