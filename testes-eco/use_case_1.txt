@@ -1,0 +1,66 @@
+# limpa qualquer arquivo ou dado persistido anteriormente
+limparSistema
+
+# Cadastrando Pessoas
+# - Marina: sem partido
+# - Mateus: sem interesses
+# - Marcos: sem partido e sem interesses
+# - Plipox: com partido e com interesses
+
+cadastrarPessoa nome="Marina Maria" dni="011111111-0" estado="PB" interesses="educacao,seguranca publica,saude"
+cadastrarPessoa nome="Mateus Matia" dni="012222222-0" estado="PE" interesses="" partido="ABC"
+cadastrarPessoa nome="Marcos Marco" dni="013333333-0" estado="PI" interesses=""
+cadastrarPessoa nome="Plipox Poplx" dni="014444444-0" estado="RO" interesses="trabalho" partido="DEF"
+
+# nome, dni ou estado vazios
+expectError "Erro ao cadastrar pessoa: nome nao pode ser vazio ou nulo" cadastrarPessoa nome="" dni="015555555-0" estado="BA" interesses=""
+expectError "Erro ao cadastrar pessoa: nome nao pode ser vazio ou nulo" cadastrarPessoa nome="" dni="015555555-0" estado="BA" interesses="" partido=""
+expectError "Erro ao cadastrar pessoa: dni nao pode ser vazio ou nulo" cadastrarPessoa nome="Teste" dni="" estado="BA" interesses=""
+expectError "Erro ao cadastrar pessoa: dni nao pode ser vazio ou nulo" cadastrarPessoa nome="Teste" dni="" estado="BA" interesses="" partido=""
+expectError "Erro ao cadastrar pessoa: estado nao pode ser vazio ou nulo" cadastrarPessoa nome="Teste" dni="015555555-0" estado="" interesses=""
+expectError "Erro ao cadastrar pessoa: estado nao pode ser vazio ou nulo" cadastrarPessoa nome="Teste" dni="015555555-0" estado="" interesses="" partido=""
+
+# em caso de vários, precedência: nome, dni ou estado vazios
+expectError "Erro ao cadastrar pessoa: nome nao pode ser vazio ou nulo" cadastrarPessoa nome="" dni="" estado="BA" interesses=""
+expectError "Erro ao cadastrar pessoa: nome nao pode ser vazio ou nulo" cadastrarPessoa nome="" dni="" estado="BA" interesses="" partido=""
+expectError "Erro ao cadastrar pessoa: nome nao pode ser vazio ou nulo" cadastrarPessoa nome="" dni="015555555-0" estado="" interesses=""
+expectError "Erro ao cadastrar pessoa: nome nao pode ser vazio ou nulo" cadastrarPessoa nome="" dni="015555555-0" estado="" interesses="" partido=""
+expectError "Erro ao cadastrar pessoa: nome nao pode ser vazio ou nulo" cadastrarPessoa nome="" dni="" estado="" interesses=""
+expectError "Erro ao cadastrar pessoa: nome nao pode ser vazio ou nulo" cadastrarPessoa nome="" dni="" estado="" interesses="" partido=""
+expectError "Erro ao cadastrar pessoa: dni nao pode ser vazio ou nulo" cadastrarPessoa nome="Teste" dni="" estado="" interesses="" 
+expectError "Erro ao cadastrar pessoa: dni nao pode ser vazio ou nulo" cadastrarPessoa nome="Teste" dni="" estado="" interesses="" partido=""
+
+# DNIs compostas por algo além de números e do traço.
+expectError "Erro ao cadastrar pessoa: dni invalido" cadastrarPessoa nome="Marina Maria" dni=" 11111111-0" estado="PB" interesses="educacao,seguranca publica,saude"
+expectError "Erro ao cadastrar pessoa: dni invalido" cadastrarPessoa nome="Marina Maria" dni=" 11111111-0" estado="PB" interesses="educacao,seguranca publica,saude" partido=""
+expectError "Erro ao cadastrar pessoa: dni invalido" cadastrarPessoa nome="Marina Maria" dni="A111111111-0" estado="PB" interesses="educacao,seguranca publica,saude"
+expectError "Erro ao cadastrar pessoa: dni invalido" cadastrarPessoa nome="Marina Maria" dni="A111111111-0" estado="PB" interesses="educacao,seguranca publica,saude" partido=""
+expectError "Erro ao cadastrar pessoa: dni invalido" cadastrarPessoa nome="Marina Maria" dni="1111111111-A" estado="PB" interesses="educacao,seguranca publica,saude"
+expectError "Erro ao cadastrar pessoa: dni invalido" cadastrarPessoa nome="Marina Maria" dni="1111111111-A" estado="PB" interesses="educacao,seguranca publica,saude" partido=""
+expectError "Erro ao cadastrar pessoa: dni invalido" cadastrarPessoa nome="Marina Maria" dni="A111111111-0" estado="PB" interesses="educacao,seguranca publica,saude" 
+expectError "Erro ao cadastrar pessoa: dni invalido" cadastrarPessoa nome="Marina Maria" dni="A111111111-0" estado="PB" interesses="educacao,seguranca publica,saude" partido=""
+expectError "Erro ao cadastrar pessoa: dni invalido" cadastrarPessoa nome="Marina Maria" dni=".111111111-0" estado="PB" interesses="educacao,seguranca publica,saude" 
+expectError "Erro ao cadastrar pessoa: dni invalido" cadastrarPessoa nome="Marina Maria" dni=".111111111-0" estado="PB" interesses="educacao,seguranca publica,saude" partido=""
+
+# mensagem de erro vazio/nulo tem prioridade sobre dni
+expectError "Erro ao cadastrar pessoa: nome nao pode ser vazio ou nulo" cadastrarPessoa nome="" dni=" 15555555-0" estado="BA" interesses=""
+expectError "Erro ao cadastrar pessoa: nome nao pode ser vazio ou nulo" cadastrarPessoa nome="" dni=" 15555555-0" estado="BA" interesses="" partido=""
+expectError "Erro ao cadastrar pessoa: estado nao pode ser vazio ou nulo" cadastrarPessoa nome="Teste" dni=" 15555555-0" estado="" interesses=""
+expectError "Erro ao cadastrar pessoa: estado nao pode ser vazio ou nulo" cadastrarPessoa nome="Teste" dni=" 15555555-0" estado="" interesses="" partido=""
+
+# Cadastro de pessoas com mesmo DNI
+expectError "Erro ao cadastrar pessoa: dni ja cadastrado" cadastrarPessoa nome="MM1" dni="011111111-0" estado="PB" interesses="educacao,seguranca publica,saude"
+expectError "Erro ao cadastrar pessoa: dni ja cadastrado" cadastrarPessoa nome="MM2" dni="012222222-0" estado="PE" interesses="" partido="ABC"
+expectError "Erro ao cadastrar pessoa: dni ja cadastrado" cadastrarPessoa nome="MM3" dni="013333333-0" estado="PI" interesses=""
+expectError "Erro ao cadastrar pessoa: dni ja cadastrado" cadastrarPessoa nome="PP1" dni="014444444-0" estado="RO" interesses="trabalho" partido="DEF"
+expectError "Erro ao cadastrar pessoa: dni ja cadastrado" cadastrarPessoa nome="MM1" dni="011111111-0" estado="PB" interesses="educacao,seguranca publica,saude"
+expectError "Erro ao cadastrar pessoa: dni ja cadastrado" cadastrarPessoa nome="MM2" dni="012222222-0" estado="PE" interesses="" partido="ABC"
+expectError "Erro ao cadastrar pessoa: dni ja cadastrado" cadastrarPessoa nome="MM3" dni="013333333-0" estado="PI" interesses=""
+expectError "Erro ao cadastrar pessoa: dni ja cadastrado" cadastrarPessoa nome="PP1" dni="014444444-0" estado="RO" interesses="trabalho" partido="DEF"
+
+# nome ou estado vazio tem precedência sobre o erro de cadastro com mesmo DNI
+expectError "Erro ao cadastrar pessoa: nome nao pode ser vazio ou nulo" cadastrarPessoa nome="" dni="011111111-0" estado="PB" interesses="educacao,seguranca publica,saude"
+expectError "Erro ao cadastrar pessoa: estado nao pode ser vazio ou nulo" cadastrarPessoa nome="MM1" dni="011111111-0" estado="" interesses="educacao,seguranca publica,saude"
+
+# salva o sistema em arquivos
+salvarSistema
