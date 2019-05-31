@@ -1,6 +1,7 @@
 package ECO;
 
 
+import java.util.HashMap;
 import java.util.Map;
 
 import static Util.Validador.*;
