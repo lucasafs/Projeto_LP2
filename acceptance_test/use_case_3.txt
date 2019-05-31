@@ -1,0 +1,39 @@
+# carrega o sistema
+carregarSistema
+
+# Cadastrando Pessoas
+# - Marina: sem partido
+# - Mateus: sem interesses
+# - Marcos: sem partido e sem interesses
+# - Plipox: com partido e com interesses
+
+cadastrarPessoa nome="Marina Maria" dni="031111111-0" estado="PB" interesses="educacao,seguranca publica,saude"
+cadastrarPessoa nome="Mateus Matia" dni="031222222-0" estado="PE" interesses="" partido="ABC"
+cadastrarPessoa nome="Marcos Marco" dni="031333333-0" estado="PI" interesses=""
+cadastrarPessoa nome="Plipox Poplx" dni="031444444-0" estado="RO" interesses="trabalho" partido="DEF"
+
+expect "Marina Maria - 031111111-0 (PB) - Interesses: educacao,seguranca publica,saude" exibirPessoa dni="031111111-0"
+expect "Mateus Matia - 031222222-0 (PE) - ABC" exibirPessoa dni="031222222-0"
+expect "Marcos Marco - 031333333-0 (PI)" exibirPessoa dni="031333333-0"
+expect "Plipox Poplx - 031444444-0 (RO) - DEF - Interesses: trabalho" exibirPessoa dni="031444444-0"
+
+cadastrarDeputado dni="031222222-0" dataDeInicio="29022016"
+cadastrarDeputado dni="031444444-0" dataDeInicio="30012019"
+
+expect "POL: Mateus Matia - 031222222-0 (PE) - ABC - 29/02/2016 - 0 Leis" exibirPessoa dni="031222222-0"
+expect "POL: Plipox Poplx - 031444444-0 (RO) - DEF - Interesses: trabalho - 30/01/2019 - 0 Leis" exibirPessoa dni="031444444-0"
+
+# pessoa inexistente
+expectError "Erro ao exibir pessoa: pessoa nao encontrada" exibirPessoa dni="000000000-0"
+
+# dni vazio
+expectError "Erro ao exibir pessoa: dni nao pode ser vazio ou nulo" exibirPessoa dni=""
+
+# dni invalido
+expectError "Erro ao exibir pessoa: dni invalido" exibirPessoa dni=" 22222222-0"
+expectError "Erro ao exibir pessoa: dni invalido" exibirPessoa dni="A22222222-0"
+expectError "Erro ao exibir pessoa: dni invalido" exibirPessoa dni="022222222-A"
+expectError "Erro ao exibir pessoa: dni invalido" exibirPessoa dni="022222222-."
+
+# salva o sistema em arquivos
+salvarSistema
