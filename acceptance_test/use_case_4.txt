@@ -1,0 +1,19 @@
+# carrega o sistema
+carregarSistema
+
+expect "" exibirBase
+
+cadastrarPartido partido="ABC"
+expect "ABC" exibirBase
+
+cadastrarPartido partido="IJK"
+expect "ABC,IJK" exibirBase
+
+cadastrarPartido partido="FGH"
+expect "ABC,FGH,IJK" exibirBase
+
+# partido vazio
+expectError "Erro ao cadastrar partido: partido nao pode ser vazio ou nulo" cadastrarPartido partido=""
+
+# salva o sistema em arquivos
+salvarSistema
