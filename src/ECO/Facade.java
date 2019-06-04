@@ -6,9 +6,13 @@ import easyaccept.EasyAccept;
 public class Facade {
     private Controller controller;
 
+    public Facade(){
+        this.controller = new Controller();
+    }
+
     public static void main(String[] args)
     {
-        args = new String[]{"ECO.Facade","acceptance_test/use_case_1.txt","acceptance_test/use_case_2.txt","acceptance_test/use_case_3.txt","acceptance_test/use_case_4.txt"};
+        args = new String[]{"ECO.Facade", "acceptance_test/use_case_1.txt", "acceptance_test/use_case_2.txt", "acceptance_test/use_case_3.txt", "acceptance_test/use_case_4.txt"};
         EasyAccept.main(args);
     }
 
@@ -27,5 +31,11 @@ public class Facade {
 
     public String exibirPessoa(String DNI){
         return controller.exibirPessoa(DNI);
+    }
+    public void cadastrarPartido(String partido){
+        controller.cadastraPartido(partido);
+    }
+    public String exibirBase(){
+        return controller.exibirBase();
     }
 }
