@@ -70,7 +70,7 @@ public class Controller
     }
 
     /**
-     * cadastra um partido atravez do seu nome, ignora repeticoes
+     * cadastra um partido atravez do seu nome, ignora repetições
      * @param partido String contendo o nome do partido
      */
     public void cadastraPartido(String partido){
