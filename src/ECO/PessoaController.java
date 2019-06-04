@@ -8,34 +8,30 @@ import java.util.TreeSet;
 
 import static Util.Validador.*;
 
-public class Controller
+public class PessoaController
 {
     private Map<String, Pessoa> pessoaMap;
     private Set<String> partidoMap;
 
-    public Controller(){
+    public PessoaController(){
         this.pessoaMap = new HashMap<>();
         this.partidoMap = new TreeSet<>();
     }
 
     public boolean cadastrarPessoa(String nome, String dni, String estado, String interesses){
         validaParametrosCadastrarPessoa(nome,dni,estado);
-        if (!validaDNI(dni)){
-            throw new IllegalArgumentException("DNI Invalido!");
-        }
+        validaDNI(dni);
         if (pessoaMap.containsKey(dni)){
-            throw new IllegalArgumentException("DNI já cadastrado!");
+            throw new IllegalArgumentException("Erro ao cadastrar pessoa: dni ja cadastrado");
         }
         pessoaMap.put(dni, new Pessoa(nome,dni,estado,interesses));
         return true;
     }
     public boolean cadastrarPessoa(String nome, String dni, String estado, String interesses, String partido){
         validaParametrosCadastrarPessoa(nome,dni,estado);
-        if (!validaDNI(dni)){
-            throw new IllegalArgumentException("DNI Invalido!");
-        }
+        validaDNI(dni);
         if (pessoaMap.containsKey(dni)){
-            throw new IllegalArgumentException("DNI já cadastrado!");
+            throw new IllegalArgumentException("Erro ao cadastrar pessoa: dni ja cadastrado");
         }
         pessoaMap.put(dni, new Pessoa(nome,dni,estado,interesses,partido));
         return true;
@@ -43,26 +39,22 @@ public class Controller
 
     public boolean cadastrarDeputado(String dni, String data)
     {
-        if (!validaDNI(dni)){
-            throw new IllegalArgumentException("DNI Invalido!");
-        }
+        validaDNI(dni);
+
         if (!pessoaMap.containsKey(dni)){
-            throw new IllegalArgumentException("DNI não cadastrado!");
-        }
+            throw new IllegalArgumentException("Erro ao cadastrar deputado: pessoa nao encontrada");
+        }validaData(data);
         if ("".equals(pessoaMap.get(dni).getPartido().trim())){
-            throw new IllegalArgumentException("Pessoa sem partido!");
+            throw new IllegalArgumentException("Erro ao cadastrar deputado: pessoa sem partido");
         }
-        if (!validaData(data)){
-            throw new IllegalArgumentException("Data irregular!");
-        }
+
         return this.pessoaMap.get(dni).cadastraDeputado(data);
 
     }
 
     public String exibirPessoa(String dni){
-        if (!validaDNI(dni)){
-            throw new IllegalArgumentException("DNI Invalido!");
-        } else if (!pessoaMap.containsKey(dni)){
+        validaDNI(dni);
+        if (!pessoaMap.containsKey(dni)){
             throw new NullPointerException();
         } else {
             return pessoaMap.get(dni).toString();
