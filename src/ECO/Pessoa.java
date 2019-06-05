@@ -34,16 +34,24 @@ public class Pessoa {
         return partido;
     }
 
+    public String exibirPessoa(){
+        if (!(this.funcao == null)){
+            return "POL: " + toString();
+        } else {
+            return toString();
+        }
+    }
+
     @Override
     public String toString()
     {
-        if (funcao.equals(null)){
+        if (funcao == null){
             if ("".equals(this.interesses.trim()) && "".equals(this.partido.trim())){
                 return this.nome + " - " + this.dni + " (" + this.estado + ")";
             } else if (!"".equals(this.partido.trim()) && "".equals(this.interesses.trim())){
                 return this.nome + " - " + this.dni + " (" + this.estado + ") - " + this.partido;
             } else if (!"".equals(interesses) && "".equals(partido.trim())){
-                return this.nome + " - " + this.dni + " (" + this.estado + ") - " + this.interesses;
+                return this.nome + " - " + this.dni + " (" + this.estado + ") - Interesses: " + this.interesses;
             } else {
                 return this.nome + " - " + this.dni + " (" + this.estado + ") - " + this.partido + " - Interesses: " + this.interesses;
             }

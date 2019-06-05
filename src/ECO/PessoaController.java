@@ -1,10 +1,7 @@
 package ECO;
 
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Set;
-import java.util.TreeSet;
+import java.util.*;
 
 import static Util.Validador.*;
 
@@ -14,33 +11,33 @@ public class PessoaController
     private Set<String> partidoMap;
 
     public PessoaController(){
-        this.pessoaMap = new HashMap<>();
+        this.pessoaMap = new TreeMap<>();
         this.partidoMap = new TreeSet<>();
     }
 
     public boolean cadastrarPessoa(String nome, String dni, String estado, String interesses){
         validaParametrosCadastrarPessoa(nome,dni,estado);
-        validaDNI(dni);
-        if (pessoaMap.containsKey(dni)){
+//        validaDNI(dni,0);
+        if (this.pessoaMap.containsKey(dni)){
             throw new IllegalArgumentException("Erro ao cadastrar pessoa: dni ja cadastrado");
         }
-        pessoaMap.put(dni, new Pessoa(nome,dni,estado,interesses));
+        this.pessoaMap.put(dni, new Pessoa(nome,dni,estado,interesses));
         return true;
     }
     public boolean cadastrarPessoa(String nome, String dni, String estado, String interesses, String partido){
         validaParametrosCadastrarPessoa(nome,dni,estado);
-        validaDNI(dni);
-        if (pessoaMap.containsKey(dni)){
+//        validaDNI(dni,0);
+        if (this.pessoaMap.containsKey(dni)){
             throw new IllegalArgumentException("Erro ao cadastrar pessoa: dni ja cadastrado");
         }
-        pessoaMap.put(dni, new Pessoa(nome,dni,estado,interesses,partido));
+        this.pessoaMap.put(dni, new Pessoa(nome,dni,estado,interesses,partido));
         return true;
     }
 
     public boolean cadastrarDeputado(String dni, String data)
     {
-        validaDNI(dni);
-
+//        validaDNI(dni,1);
+        validaDNICadastrarDeputado(dni);
         if (!pessoaMap.containsKey(dni)){
             throw new IllegalArgumentException("Erro ao cadastrar deputado: pessoa nao encontrada");
         }validaData(data);
@@ -53,12 +50,11 @@ public class PessoaController
     }
 
     public String exibirPessoa(String dni){
-        validaDNI(dni);
+        validaDNIExibirPessoa(dni);
         if (!pessoaMap.containsKey(dni)){
-            throw new NullPointerException();
-        } else {
-            return pessoaMap.get(dni).toString();
+            throw new NullPointerException("Erro ao exibir pessoa: pessoa nao encontrada");
         }
+        return this.pessoaMap.get(dni).exibirPessoa();
     }
 
     /**
