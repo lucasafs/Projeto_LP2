@@ -43,7 +43,7 @@ expectError "Erro ao cadastrar deputado: pessoa nao encontrada" cadastrarDeputad
 expectError "Erro ao cadastrar deputado: pessoa nao encontrada" cadastrarDeputado dni="000000000-0" dataDeInicio="01022117"
 
 # dni vazio
-expectError "Erro ao cadastrar pessoa: dni nao pode ser vazio ou nulo" cadastrarDeputado dni="" dataDeInicio="29022016"
+expectError "Erro ao cadastrar deputado: dni nao pode ser vazio ou nulo" cadastrarDeputado dni="" dataDeInicio="29022016"
 
 # dni invalido
 expectError "Erro ao cadastrar deputado: dni invalido" cadastrarDeputado dni=" 22222222-0" dataDeInicio="29022016"

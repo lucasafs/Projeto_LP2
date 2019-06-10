@@ -1,4 +1,4 @@
-package ECO.ECOTests;
+package ECOTests;
 
 
 import ECO.*;
@@ -8,11 +8,11 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class ControllerTest {
 
-    Controller c;
+    PessoaController c;
 
     @BeforeEach
     void setup(){
-       c = new Controller();
+       c = new PessoaController();
     }
 
     @org.junit.jupiter.api.Test

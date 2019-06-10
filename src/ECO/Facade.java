@@ -12,7 +12,8 @@ public class Facade {
     }
 
     public static void main(String[] args) {
-        args = new String[]{"ECO.Facade", "Projeto_LP2/acceptance_test/use_case_1.txt", "Projeto_LP2/acceptance_test/use_case_2.txt", "Projeto_LP2/acceptance_test/use_case_3.txt", "Projeto_LP2/acceptance_test/use_case_4.txt"};
+        args = new String[]{"ECO.Facade", "acceptance_test/use_case_1.txt", "acceptance_test/use_case_2.txt", "acceptance_test/use_case_3.txt", "acceptance_test/use_case_4.txt"};
+
         EasyAccept.main(args);
     }
 
@@ -46,5 +47,8 @@ public class Facade {
     public String exibirBase(){
         return controller.exibirBase();
     }
+
+
+
 
 }
