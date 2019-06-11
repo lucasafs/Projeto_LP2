@@ -29,6 +29,14 @@ public class Validador {
         validaDNI(dni,"Erro ao exibir pessoa:");
     }
 
+    public static void validaDNICadastrarComissao(String dni){
+        validaDNI(dni,"Erro ao cadastrar comissao:");
+    }
+
+    public static void validaDNICadastroProjeto(String dni){
+        validaDNI(dni,"Erro ao cadastrar projeto:");
+    }
+
     public static void validaDNI(String dni, String erro) {
         if (dni.equals(null) || "".equals(dni.trim()))
         {
@@ -99,4 +107,38 @@ public class Validador {
 //            return true;
 //        }
     }
+    public static void validaComissao(String tema, String deputados){
+        if ("".equals(tema.trim())){
+            throw new IllegalArgumentException("Erro ao cadastrar comissao: tema nao pode ser vazio ou nulo");
+        }
+        if ("".equals(deputados.trim())){
+            throw new IllegalArgumentException("Erro ao cadastrar comissao: lista de politicos nao pode ser vazio ou nulo");
+        }
+    }
+
+    public static void validaCadastroLei(String dni, int ano, String ementa, String interesses, String url){
+        if ("".equals(dni.trim())){
+            throw new IllegalArgumentException("Erro ao cadastrar projeto: autor nao pode ser vazio ou nulo");
+        } else if ("".equals(ementa.trim())){
+            throw new IllegalArgumentException("Erro ao cadastrar projeto: ementa nao pode ser vazia ou nula");
+        } else if ("".equals(interesses.trim())){
+            throw new IllegalArgumentException("Erro ao cadastrar projeto: interesse nao pode ser vazio ou nulo");
+        } else if ("".equals(url.trim())){
+            throw new IllegalArgumentException("Erro ao cadastrar projeto: url nao pode ser vazio ou nulo");
+        }
+    }
+    public static void validaCadastroLei(String dni, int ano, String ementa, String interesses, String url, String artigos){
+        if ("".equals(dni.trim())){
+            throw new IllegalArgumentException("Erro ao cadastrar projeto: autor nao pode ser vazio ou nulo");
+        } else if ("".equals(ementa.trim())){
+            throw new IllegalArgumentException("Erro ao cadastrar projeto: ementa nao pode ser vazia ou nula");
+        } else if ("".equals(interesses.trim())){
+            throw new IllegalArgumentException("Erro ao cadastrar projeto: interesse nao pode ser vazio ou nulo");
+        } else if ("".equals(url.trim())){
+            throw new IllegalArgumentException("Erro ao cadastrar projeto: url nao pode ser vazio ou nulo");
+        } else if ("".equals(artigos.trim())){
+            throw new IllegalArgumentException("Erro ao cadastrar projeto: artigo nao pode ser vazio ou nulo");
+        }
+    }
+
 }
