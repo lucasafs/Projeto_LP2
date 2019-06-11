@@ -1,0 +1,81 @@
+# carrega o sistema
+carregarSistema
+
+# Cadastrando Pessoas
+# - Marina: sem partido
+# - Mateus: sem interesses
+# - Marcos: sem partido e sem interesses
+# - Plipox: com partido e com interesses
+
+cadastrarPessoa nome="Marina Maria" dni="061111111-0" estado="PB" interesses="educacao,seguranca publica,saude"
+cadastrarPessoa nome="Mateus Matia" dni="061222222-0" estado="PE" interesses="" partido="ABC"
+cadastrarPessoa nome="Marcos Marco" dni="061333333-0" estado="PI" interesses=""
+cadastrarPessoa nome="Plipox Poplx" dni="061444444-0" estado="RO" interesses="trabalho" partido="DEF"
+
+cadastrarDeputado dni="061222222-0" dataDeInicio="29022016"
+cadastrarDeputado dni="061444444-0" dataDeInicio="30012019"
+
+cadastrarPL dni="061222222-0" ano=2016 ementa="Institui a semana da nutricao nas escolas" interesses="saude,educacao basica" url="http://example.com/semana_saude" conclusivo=true
+cadastrarPL dni="061222222-0" ano=2016 ementa="Institui a semana do carinho nas escolas" interesses="cidadania,educacao basica" url="http://example.com/semana_cidadania" conclusivo=false
+cadastrarPLP dni="061444444-0" ano=2016 ementa="Regulamenta a tributacao de apostas eletronicas" interesses="fiscal,jogos" url="https://example.net/jogos%40aposta" artigos="153"
+cadastrarPEC dni="061222222-0" ano=2016 ementa="Permite a associacao sindical livre e com estrutura hierarquica" interesses="trabalho" url="https://example.com/sindicato/algo.html" artigos="7, 8"
+
+expect "Projeto de Lei - PL 1/2016 - 061222222-0 - Institui a semana da nutricao nas escolas - Conclusiva - EM VOTACAO (CCJC)" exibirProjeto codigo="PL 1/2016"
+expect "Projeto de Lei - PL 2/2016 - 061222222-0 - Institui a semana do carinho nas escolas - EM VOTACAO (CCJC)" exibirProjeto codigo="PL 2/2016"
+expect "Projeto de Lei Complementar - PLP 1/2016 - 061444444-0 - Regulamenta a tributacao de apostas eletronicas - 153 - EM VOTACAO (CCJC)" exibirProjeto codigo="PLP 1/2016"
+expect "Projeto de Emenda Constitucional - PEC 1/2016 - 061222222-0 - Permite a associacao sindical livre e com estrutura hierarquica - 7, 8 - EM VOTACAO (CCJC)" exibirProjeto codigo="PEC 1/2016"
+
+# DNI, ementa, interesses, url, artigos vazios
+expectError "Erro ao cadastrar projeto: autor nao pode ser vazio ou nulo" cadastrarPL dni="" ano=2016 ementa="Institui a semana da nutricao nas escolas" interesses="saude,educacao basica" url="http://example.com/semana_saude" conclusivo=true
+expectError "Erro ao cadastrar projeto: autor nao pode ser vazio ou nulo" cadastrarPLP dni="" ano=2016 ementa="Regulamenta a tributacao de apostas eletronicas" interesses="fiscal,jogos" url="https://example.net/jogos%40aposta" artigos="153"
+expectError "Erro ao cadastrar projeto: autor nao pode ser vazio ou nulo" cadastrarPEC dni="" ano=2016 ementa="Permite a associacao sindical livre e com estrutura hierarquica" interesses="trabalho" url="https://example.com/sindicato/algo.html" artigos="7,8"
+expectError "Erro ao cadastrar projeto: ementa nao pode ser vazia ou nula" cadastrarPL dni="061222222-0" ano=2016 ementa="" interesses="saude,educacao basica" url="http://example.com/semana_saude" conclusivo=true
+expectError "Erro ao cadastrar projeto: ementa nao pode ser vazia ou nula" cadastrarPLP dni="061444444-0" ano=2016 ementa="" interesses="fiscal,jogos" url="https://example.net/jogos%40aposta" artigos="153"
+expectError "Erro ao cadastrar projeto: ementa nao pode ser vazia ou nula" cadastrarPEC dni="061222222-0" ano=2016 ementa="" interesses="trabalho" url="https://example.com/sindicato/algo.html" artigos="7,8"
+expectError "Erro ao cadastrar projeto: interesse nao pode ser vazio ou nulo" cadastrarPL dni="061222222-0" ano=2016 ementa="Institui a semana da nutricao nas escolas" interesses="" url="http://example.com/semana_saude" conclusivo=true
+expectError "Erro ao cadastrar projeto: interesse nao pode ser vazio ou nulo" cadastrarPLP dni="061444444-0" ano=2016 ementa="Regulamenta a tributacao de apostas eletronicas" interesses="" url="https://example.net/jogos%40aposta" artigos="153"
+expectError "Erro ao cadastrar projeto: interesse nao pode ser vazio ou nulo" cadastrarPEC dni="061222222-0" ano=2016 ementa="Permite a associacao sindical livre e com estrutura hierarquica" interesses="" url="https://example.com/sindicato/algo.html" artigos="7,8"
+expectError "Erro ao cadastrar projeto: url nao pode ser vazio ou nulo" cadastrarPL dni="061222222-0" ano=2016 ementa="Institui a semana da nutricao nas escolas" interesses="saude,educacao basica" url="" conclusivo=true
+expectError "Erro ao cadastrar projeto: url nao pode ser vazio ou nulo" cadastrarPLP dni="061444444-0" ano=2016 ementa="Regulamenta a tributacao de apostas eletronicas" interesses="fiscal,jogos" url="" artigos="153"
+expectError "Erro ao cadastrar projeto: url nao pode ser vazio ou nulo" cadastrarPEC dni="061222222-0" ano=2016 ementa="Permite a associacao sindical livre e com estrutura hierarquica" interesses="trabalho" url="" artigos="7,8"
+expectError "Erro ao cadastrar projeto: artigo nao pode ser vazio ou nulo" cadastrarPLP dni="061444444-0" ano=2016 ementa="Regulamenta a tributacao de apostas eletronicas" interesses="fiscal,jogos" url="https://example.net/jogos%40aposta" artigos=""
+expectError "Erro ao cadastrar projeto: artigo nao pode ser vazio ou nulo" cadastrarPEC dni="061222222-0" ano=2016 ementa="Permite a associacao sindical livre e com estrutura hierarquica" interesses="trabalho" url="https://example.com/sindicato/algo.html" artigos=""
+
+#DNIs compostas por algo além de números e do traço ( - )
+expectError "Erro ao cadastrar projeto: dni invalido" cadastrarPL dni=" 061222222-0" ano=2016 ementa="Institui a semana da nutricao nas escolas" interesses="saude,educacao basica" url="http://example.com/semana_saude" conclusivo=true
+expectError "Erro ao cadastrar projeto: dni invalido" cadastrarPLP dni=" 061444444-0" ano=2016 ementa="Regulamenta a tributacao de apostas eletronicas" interesses="fiscal,jogos" url="https://example.net/jogos%40aposta" artigos="153"
+expectError "Erro ao cadastrar projeto: dni invalido" cadastrarPEC dni=" 061222222-0" ano=2016 ementa="Permite a associacao sindical livre e com estrutura hierarquica" interesses="trabalho" url="https://example.com/sindicato/algo.htm artigos="7,8"
+expectError "Erro ao cadastrar projeto: dni invalido" cadastrarPL dni="061222222-A" ano=2016 ementa="Institui a semana da nutricao nas escolas" interesses="saude,educacao basica" url="http://example.com/semana_saude" conclusivo=true
+expectError "Erro ao cadastrar projeto: dni invalido" cadastrarPLP dni="061444444-B" ano=2016 ementa="Regulamenta a tributacao de apostas eletronicas" interesses="fiscal,jogos" url="https://example.net/jogos%40aposta" artigos="153"
+expectError "Erro ao cadastrar projeto: dni invalido" cadastrarPEC dni="061222222-Z" ano=2016 ementa="Permite a associacao sindical livre e com estrutura hierarquica" interesses="trabalho" url="https://example.com/sindicato/algo.htm artigos="7,8"
+
+#DNI de pessoas inexistentes
+expectError "Erro ao cadastrar projeto: pessoa inexistente" cadastrarPL dni="060000000-0" ano=2016 ementa="Institui a semana da nutricao nas escolas" interesses="saude,educacao basica" url="http://example.com/semana_saude" conclusivo=true
+expectError "Erro ao cadastrar projeto: pessoa inexistente" cadastrarPLP dni="060000000-0" ano=2016 ementa="Regulamenta a tributacao de apostas eletronicas" interesses="fiscal,jogos" url="https://example.net/jogos%40aposta" artigos="153"
+expectError "Erro ao cadastrar projeto: pessoa inexistente" cadastrarPEC dni="060000000-0" ano=2016 ementa="Permite a associacao sindical livre e com estrutura hierarquica" interesses="trabalho" url="https://example.com/sindicato/algo.html" artigos="7,8"
+
+#DNI de pessoas que não sejam deputados
+expectError "Erro ao cadastrar projeto: pessoa nao eh deputado" cadastrarPL dni="061111111-0" ano=2016 ementa="Institui a semana da nutricao nas escolas" interesses="saude,educacao basica" url="http://example.com/semana_saude" conclusivo=true
+expectError "Erro ao cadastrar projeto: pessoa nao eh deputado" cadastrarPLP dni="061333333-0" ano=2016 ementa="Regulamenta a tributacao de apostas eletronicas" interesses="fiscal,jogos" url="https://example.net/jogos%40aposta" artigos="153"
+expectError "Erro ao cadastrar projeto: pessoa nao eh deputado" cadastrarPEC dni="061111111-0" ano=2016 ementa="Permite a associacao sindical livre e com estrutura hierarquica" interesses="trabalho" url="https://example.com/sindicato/algo.html" artigos="7,8"
+
+#Ano anterior a 1988 ou posterior ao ano atual
+cadastrarPL dni="061222222-0" ano=1987 ementa="Institui a semana da nutricao nas escolas" interesses="saude,educacao basica" url="http://example.com/semana_saude" conclusivo=true
+cadastrarPL dni="061222222-0" ano=3000 ementa="Institui a semana do carinho nas escolas" interesses="cidadania,educacao basica" url="http://example.com/semana_cidadania" conclusivo=false
+cadastrarPLP dni="061444444-0" ano=2020 ementa="Regulamenta a tributacao de apostas eletronicas" interesses="fiscal,jogos" url="https://example.net/jogos%40aposta" artigos="153"
+cadastrarPEC dni="061222222-0" ano=-1 ementa="Permite a associacao sindical livre e com estrutura hierarquica" interesses="trabalho" url="https://example.com/sindicato/algo.html" artigos="7,8"
+
+cadastrarPL dni="061222222-0" ano=2016 ementa="Institui a semana da nutricao nas escolas" interesses="saude,educacao basica" url="http://example.com/semana_saude" conclusivo=true
+cadastrarPL dni="061222222-0" ano=2016 ementa="Institui a semana do carinho nas escolas" interesses="cidadania,educacao basica" url="http://example.com/semana_cidadania" conclusivo=false
+cadastrarPLP dni="061444444-0" ano=2016 ementa="Regulamenta a tributacao de apostas eletronicas" interesses="fiscal,jogos" url="https://example.net/jogos%40aposta" artigos="153"
+cadastrarPEC dni="061222222-0" ano=2016 ementa="Permite a associacao sindical livre e com estrutura hierarquica" interesses="trabalho" url="https://example.com/sindicato/algo.html" artigos="7,8"
+
+expect "Projeto de Lei - PL 3/2016 - 061222222-0 - Institui a semana da nutricao nas escolas - Conclusiva - EM VOTACAO (CCJC)" exibirProjeto codigo="PL 3/2016"
+expect "Projeto de Lei - PL 4/2016 - 061222222-0 - Institui a semana do carinho nas escolas - EM VOTACAO (CCJC)" exibirProjeto codigo="PL 4/2016"
+expect "Projeto de Lei Complementar - PLP 2/2016 - 061444444-0 - Regulamenta a tributacao de apostas eletronicas - 153 - EM VOTAÇÃO (CCJC)" exibirProjeto codigo="PLP 2/2016"
+expect "Projeto de Emenda Constitucional - PEC 2/2019 - 061222222-0 - Permite a associacao sindical livre e com estrutura hierarquica - 7, 8 - EM VOTACAO (CCJC)" exibirProjeto codigo="PEC 2/2016"
+
+
+
+# salva o sistema em arquivos
+salvarSistema

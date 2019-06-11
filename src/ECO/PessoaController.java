@@ -78,4 +78,22 @@ public class PessoaController
         return (ans.length() > 0 ? ans.substring(0, ans.length()-1) : ans);
     }
 
+    public Pessoa getDeputadoComissao(String dni){
+        verificaDeputado(dni,"Erro ao cadastrar comissao:");
+        return this.pessoaMap.get(dni);
+    }
+
+    public void verificaDeputadoProjeto(String dni){
+        verificaDeputado(dni,"Erro ao cadastrar projeto:");
+    }
+
+    private void verificaDeputado(String dni,String erro){
+        if (!this.pessoaMap.containsKey(dni)){
+            throw new NullPointerException(erro + " pessoa inexistente");
+        }
+        if (this.pessoaMap.get(dni).getFuncao() == (null)){
+            throw new IllegalArgumentException(erro + " pessoa nao eh deputado");
+        }
+    }
+
 }

@@ -1,0 +1,57 @@
+# carrega o sistema
+carregarSistema
+
+# Cadastrando Pessoas
+# - Marina: sem partido
+# - Mateus: sem interesses
+# - Marcos: sem partido e sem interesses
+# - Plipox: com partido e com interesses
+
+cadastrarPessoa nome="Marina Maria" dni="051111111-0" estado="PB" interesses="educacao,seguranca publica,saude"
+cadastrarPessoa nome="Mateus Matia" dni="051222222-0" estado="PE" interesses="" partido="ABC"
+cadastrarPessoa nome="Marcos Marco" dni="051333333-0" estado="PI" interesses=""
+cadastrarPessoa nome="Plipox Poplx" dni="051444444-0" estado="RO" interesses="trabalho" partido="DEF"
+
+cadastrarDeputado dni="051222222-0" dataDeInicio="29022016"
+cadastrarDeputado dni="051444444-0" dataDeInicio="30012019"
+
+cadastrarComissao tema="CCJCC" politicos="051222222-0,051444444-0"
+cadastrarComissao tema="Educacao" politicos="051444444-0"
+cadastrarComissao tema="CLP" politicos="051444444-0"
+
+# Nomes, temas ou strings de políticos vazia
+expectError "Erro ao cadastrar comissao: tema nao pode ser vazio ou nulo" cadastrarComissao tema="" politicos="051444444-0"
+expectError "Erro ao cadastrar comissao: tema nao pode ser vazio ou nulo" cadastrarComissao tema=" " politicos="051444444-0"
+expectError "Erro ao cadastrar comissao: lista de politicos nao pode ser vazio ou nulo" cadastrarComissao tema="Mulher1" politicos=""
+expectError "Erro ao cadastrar comissao: lista de politicos nao pode ser vazio ou nulo" cadastrarComissao tema="Mulher2" politicos="    "
+
+# DNIs compostas por algo além de números e do traço ( - )
+expectError "Erro ao cadastrar comissao: dni invalido" cadastrarComissao tema="Mulher3" politicos="051222222-A,051444444-0"
+expectError "Erro ao cadastrar comissao: dni invalido" cadastrarComissao tema="Mulher4" politicos="051222222-0, 05144444-0"
+expectError "Erro ao cadastrar comissao: dni invalido" cadastrarComissao tema="Mulher5" politicos="051222222-0,051444444-Y"
+
+# Cadastro de tema já cadastrado anteriormente
+expectError "Erro ao cadastrar comissao: tema existente" cadastrarComissao tema="CCJCC" politicos="051444444-0"
+expectError "Erro ao cadastrar comissao: tema existente" cadastrarComissao tema="CLP" politicos="051444444-0"
+
+# DNI de uma pessoa inexistente
+expectError "Erro ao cadastrar comissao: pessoa inexistente" cadastrarComissao tema="Mulher6" politicos="050000000-0"
+expectError "Erro ao cadastrar comissao: pessoa inexistente" cadastrarComissao tema="Mulher7" politicos="050000000-0,050000001-0"
+
+# DNI de uma pessoa que não é política.
+expectError "Erro ao cadastrar comissao: pessoa nao eh deputado" cadastrarComissao tema="CCJCCCC" politicos="051333333-0,051444444-0"
+expectError "Erro ao cadastrar comissao: pessoa nao eh deputado" cadastrarComissao tema="CCJCCCC" politicos="051222222-0,051111111-0"
+
+# Precedencia
+expectError "Erro ao cadastrar comissao: tema nao pode ser vazio ou nulo" cadastrarComissao tema="" politicos="051444444-0"
+expectError "Erro ao cadastrar comissao: tema nao pode ser vazio ou nulo" cadastrarComissao tema="" politicos=""
+expectError "Erro ao cadastrar comissao: tema nao pode ser vazio ou nulo" cadastrarComissao tema="" politicos="051444444-A"
+expectError "Erro ao cadastrar comissao: tema nao pode ser vazio ou nulo" cadastrarComissao tema="" politicos="050000000-0"
+expectError "Erro ao cadastrar comissao: tema nao pode ser vazio ou nulo" cadastrarComissao tema="" politicos="051222222-0,051111111-0"
+expectError "Erro ao cadastrar comissao: lista de politicos nao pode ser vazio ou nulo" cadastrarComissao tema="CCJCC" politicos=""
+expectError "Erro ao cadastrar comissao: tema existente" cadastrarComissao tema="CCJCC" politicos="051222222-A,051444444-0"
+expectError "Erro ao cadastrar comissao: tema existente" cadastrarComissao tema="CCJCC" politicos="050000000-0"
+expectError "Erro ao cadastrar comissao: tema existente" cadastrarComissao tema="CCJCC" politicos="051222222-0,051111111-0"
+
+# salva o sistema em arquivos
+salvarSistema

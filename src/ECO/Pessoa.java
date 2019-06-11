@@ -15,6 +15,7 @@ public class Pessoa {
         this.estado = estado;
         this.interesses = interesses;
         this.partido = "";
+        this.funcao = null;
     }
     public Pessoa(String nome, String dni, String estado, String interesses, String partido){
         this.nome = nome;
@@ -22,6 +23,7 @@ public class Pessoa {
         this.estado = estado;
         this.interesses = interesses;
         this.partido = partido;
+        this.funcao = null;
     }
 
     public boolean cadastraDeputado(String data){
@@ -40,6 +42,10 @@ public class Pessoa {
         } else {
             return toString();
         }
+    }
+
+    public Funcao getFuncao() {
+        return funcao;
     }
 
     @Override
