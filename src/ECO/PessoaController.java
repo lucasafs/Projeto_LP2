@@ -21,7 +21,7 @@ public class PessoaController
         if (this.pessoaMap.containsKey(dni)){
             throw new IllegalArgumentException("Erro ao cadastrar pessoa: dni ja cadastrado");
         }
-        this.pessoaMap.put(dni, new Pessoa(nome,dni,estado,interesses));
+        this.pessoaMap.put(dni, new PessoaSemPartido(nome,dni,estado,interesses));
         return true;
     }
     public boolean cadastrarPessoa(String nome, String dni, String estado, String interesses, String partido){
@@ -30,7 +30,7 @@ public class PessoaController
         if (this.pessoaMap.containsKey(dni)){
             throw new IllegalArgumentException("Erro ao cadastrar pessoa: dni ja cadastrado");
         }
-        this.pessoaMap.put(dni, new Pessoa(nome,dni,estado,interesses,partido));
+        this.pessoaMap.put(dni, new PessoaComPartido(nome,dni,estado,interesses,partido));
         return true;
     }
 

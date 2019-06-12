@@ -21,4 +21,8 @@ public abstract class LeiAbstract implements PropostaLei {
     }
 
     public abstract String exibirProjeto();
+    
+    //public boolean votarComissao(String statusGovernista, String proximoLocal) {
+    	
+    
 }

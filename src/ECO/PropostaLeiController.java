@@ -51,4 +51,8 @@ public class PropostaLeiController {
     public String exibirProjeto(String codigo){
         return this.propostaLeiMap.get(codigo).exibirProjeto();
     }
+    
+    /*public boolean votarComissao(String codigo, String statusGovernista, String proximoLocal) {
+    	this.propostaLeiMap.get(codigo).
+    }*/
 }
