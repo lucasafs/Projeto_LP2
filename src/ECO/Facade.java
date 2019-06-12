@@ -71,4 +71,12 @@ public class Facade {
     public String exibirProjeto(String codigo){
         return this.econtroller.exibirProjeto(codigo);
     }
+    
+    public boolean votarComissao(String codigo, String statusGovernista, String proximoLocal) {
+    	return this.econtroller.votarComissao(codigo, statusGovernista, proximoLocal);
+    }
+    
+    public boolean votarPlenario(String codigo, String statusGovernista, String presentes) {
+    	return this.econtroller.votarPlenario(codigo, statusGovernista, presentes);
+    }
 }

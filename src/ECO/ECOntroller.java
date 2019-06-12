@@ -76,4 +76,13 @@ public class ECOntroller {
     public String exibirProjeto(String codigo){
         return this.propostaLeiController.exibirProjeto(codigo);
     }
+
+	public boolean votarComissao(String codigo, String statusGovernista, String proximoLocal) {
+		return false;
+	}
+
+	public boolean votarPlenario(String codigo, String statusGovernista, String presentes) {
+		// TODO Auto-generated method stub
+		return false;
+	}
 }
