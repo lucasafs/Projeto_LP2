@@ -1,7 +1,8 @@
-package ECO;
+package ECO.Controladores;
+
+import ECO.Pessoa;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
 import static Util.Validador.*;
 
@@ -55,22 +56,22 @@ public class ECOntroller {
         this.comissaoController.cadastrarComissao(tema,deputados);
     }
 
-    public void cadastrarPL(String dni, int ano, String ementa, String interesses, String url, boolean conclusivo){
+    public String cadastrarPL(String dni, int ano, String ementa, String interesses, String url, boolean conclusivo){
         validaCadastroLei(dni,ano,ementa,interesses,url);
         validaDNICadastroProjeto(dni);
-        this.propostaLeiController.cadastrarPL(dni, ano, ementa, interesses, url, conclusivo);
+        return this.propostaLeiController.cadastrarPL(dni, ano, ementa, interesses, url, conclusivo);
     }
 
-    public void cadastrarPLP(String dni, int ano, String ementa, String interesses, String url, String artigos){
+    public String cadastrarPLP(String dni, int ano, String ementa, String interesses, String url, String artigos){
         validaCadastroLei(dni, ano, ementa, interesses, url, artigos);
         validaDNICadastroProjeto(dni);
-        this.propostaLeiController.cadastrarPLP(dni, ano, ementa, interesses, url, artigos);
+        return this.propostaLeiController.cadastrarPLP(dni, ano, ementa, interesses, url, artigos);
     }
 
-    public void cadastrarPEC(String dni, int ano, String ementa, String interesses, String url, String artigos){
+    public String cadastrarPEC(String dni, int ano, String ementa, String interesses, String url, String artigos){
         validaCadastroLei(dni, ano, ementa, interesses, url, artigos);
         validaDNICadastroProjeto(dni);
-        this.propostaLeiController.cadastrarPEC(dni, ano, ementa, interesses, url, artigos);
+        return this.propostaLeiController.cadastrarPEC(dni, ano, ementa, interesses, url, artigos);
     }
 
     public String exibirProjeto(String codigo){
@@ -78,7 +79,10 @@ public class ECOntroller {
     }
 
 	public boolean votarComissao(String codigo, String statusGovernista, String proximoLocal) {
-		return false;
+		if (!this.comissaoController.contemComissao(this.propostaLeiController.getLocalAtual(codigo))){
+		    throw new NullPointerException("Erro ao votar proposta: CCJC nao cadastrada");
+        }
+        return true;
 	}
 
 	public boolean votarPlenario(String codigo, String statusGovernista, String presentes) {

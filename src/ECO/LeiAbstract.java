@@ -1,6 +1,6 @@
 package ECO;
 
-public abstract class LeiAbstract implements PropostaLei {
+public abstract class LeiAbstract{
 
     protected String autorDNI;
     private int ano;
@@ -8,6 +8,7 @@ public abstract class LeiAbstract implements PropostaLei {
     protected String ementa;
     protected String interesses;
     protected String situacao;
+    protected String comissaoAtual;
     protected String url;
 
     public LeiAbstract(String dni, int ano, String codigo, String ementa, String interesses, String url){
@@ -17,11 +18,16 @@ public abstract class LeiAbstract implements PropostaLei {
         this.ementa = ementa;
         this.interesses = interesses;
         this.url = url;
-        this.situacao = "EM VOTACAO (CCJC)";
+        this.comissaoAtual = "CCJC";
+        this.situacao = "EM VOTACAO (" + this.comissaoAtual + ")";
     }
 
     public abstract String exibirProjeto();
-    
+
+    public String getComissaoAtual() {
+        return comissaoAtual;
+    }
+
     //public boolean votarComissao(String statusGovernista, String proximoLocal) {
     	
     

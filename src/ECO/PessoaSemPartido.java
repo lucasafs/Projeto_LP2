@@ -21,12 +21,6 @@ public class PessoaSemPartido extends Pessoa {
 	}
 
 	@Override
-	public String getPartido() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
 	public String exibirPessoa() {
 		return this.toString();
 	}

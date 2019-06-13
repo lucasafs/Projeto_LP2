@@ -11,4 +11,8 @@ public class Comissao {
         this.tema = tema;
         this.deputados = deputados;
     }
+
+    public String getTema() {
+        return tema;
+    }
 }

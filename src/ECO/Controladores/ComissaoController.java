@@ -1,4 +1,6 @@
-package ECO;
+package ECO.Controladores;
+
+import ECO.*;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -18,5 +20,9 @@ public class ComissaoController {
 
     public boolean contemComissao(String tema){
         return this.comissaoMap.containsKey(tema);
+    }
+
+    public Comissao getComissao(String tema){
+        return this.comissaoMap.get(tema);
     }
 }

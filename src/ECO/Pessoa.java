@@ -23,8 +23,6 @@ public abstract class Pessoa {
 
 	public abstract boolean cadastraDeputado(String data);
 
-	public abstract String getPartido();
-
 	public abstract String exibirPessoa();
 	
 
