@@ -1,6 +1,7 @@
 package ECO;
 
 
+import ECO.Controladores.ECOntroller;
 import easyaccept.EasyAccept;
 
 public class Facade {
@@ -11,14 +12,14 @@ public class Facade {
         this.econtroller = new ECOntroller();
     }
 
-//    public static void main(String[] args) {
-//        args = new String[]{"ECO.Facade", "Projeto_LP2/acceptance_test/use_case_1.txt", "Projeto_LP2/acceptance_test/use_case_2.txt", "Projeto_LP2/acceptance_test/use_case_3.txt", "Projeto_LP2/acceptance_test/use_case_4.txt"};
-//        EasyAccept.main(args);
-//    }
     public static void main(String[] args) {
-        args = new String[]{"ECO.Facade", "acceptance_test/use_case_1.txt", "acceptance_test/use_case_2.txt", "acceptance_test/use_case_3.txt", "acceptance_test/use_case_4.txt","acceptance_test/use_case_5.txt","acceptance_test/use_case_6.txt"};
+        args = new String[]{"ECO.Facade", "Projeto_LP2/acceptance_test/use_case_1.txt", "Projeto_LP2/acceptance_test/use_case_2.txt", "Projeto_LP2/acceptance_test/use_case_3.txt", "Projeto_LP2/acceptance_test/use_case_4.txt", "Projeto_LP2/acceptance_test/use_case_5.txt", "Projeto_LP2/acceptance_test/use_case_6.txt"};
         EasyAccept.main(args);
     }
+//    public static void main(String[] args) {
+//        args = new String[]{"ECO.Facade", "acceptance_test/use_case_1.txt", "acceptance_test/use_case_2.txt", "acceptance_test/use_case_3.txt", "acceptance_test/use_case_4.txt","acceptance_test/use_case_5.txt","acceptance_test/use_case_6.txt"};
+//        EasyAccept.main(args);
+//    }
 
     public void cadastrarPessoa(String nome, String dni, String estado, String interesses) {
         econtroller.cadastrarPessoa(nome, dni, estado, interesses);
@@ -56,16 +57,16 @@ public class Facade {
         this.econtroller.cadastrarComissao(tema,politicos);
     }
 
-    public void cadastrarPL(String dni, int ano, String ementa, String interesses, String url, boolean conclusivo){
-        this.econtroller.cadastrarPL(dni, ano, ementa, interesses, url, conclusivo);
+    public String cadastrarPL(String dni, int ano, String ementa, String interesses, String url, boolean conclusivo){
+        return this.econtroller.cadastrarPL(dni, ano, ementa, interesses, url, conclusivo);
     }
 
-    public void cadastrarPLP(String dni, int ano, String ementa, String interesses, String url, String artigos){
-        this.econtroller.cadastrarPLP(dni, ano, ementa, interesses, url, artigos);
+    public String cadastrarPLP(String dni, int ano, String ementa, String interesses, String url, String artigos){
+        return this.econtroller.cadastrarPLP(dni, ano, ementa, interesses, url, artigos);
     }
 
-    public void cadastrarPEC(String dni, int ano, String ementa, String interesses, String url, String artigos){
-        this.econtroller.cadastrarPEC(dni, ano, ementa, interesses, url, artigos);
+    public String cadastrarPEC(String dni, int ano, String ementa, String interesses, String url, String artigos){
+        return this.econtroller.cadastrarPEC(dni, ano, ementa, interesses, url, artigos);
     }
 
     public String exibirProjeto(String codigo){

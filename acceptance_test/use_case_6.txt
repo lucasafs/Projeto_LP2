@@ -44,10 +44,10 @@ expectError "Erro ao cadastrar projeto: artigo nao pode ser vazio ou nulo" cadas
 #DNIs compostas por algo além de números e do traço ( - )
 expectError "Erro ao cadastrar projeto: dni invalido" cadastrarPL dni=" 061222222-0" ano=2016 ementa="Institui a semana da nutricao nas escolas" interesses="saude,educacao basica" url="http://example.com/semana_saude" conclusivo=true
 expectError "Erro ao cadastrar projeto: dni invalido" cadastrarPLP dni=" 061444444-0" ano=2016 ementa="Regulamenta a tributacao de apostas eletronicas" interesses="fiscal,jogos" url="https://example.net/jogos%40aposta" artigos="153"
-expectError "Erro ao cadastrar projeto: dni invalido" cadastrarPEC dni=" 061222222-0" ano=2016 ementa="Permite a associacao sindical livre e com estrutura hierarquica" interesses="trabalho" url="https://example.com/sindicato/algo.htm artigos="7,8"
+expectError "Erro ao cadastrar projeto: dni invalido" cadastrarPEC dni=" 061222222-0" ano=2016 ementa="Permite a associacao sindical livre e com estrutura hierarquica" interesses="trabalho" url="https://example.com/sindicato/algo.htm" artigos="7,8"
 expectError "Erro ao cadastrar projeto: dni invalido" cadastrarPL dni="061222222-A" ano=2016 ementa="Institui a semana da nutricao nas escolas" interesses="saude,educacao basica" url="http://example.com/semana_saude" conclusivo=true
 expectError "Erro ao cadastrar projeto: dni invalido" cadastrarPLP dni="061444444-B" ano=2016 ementa="Regulamenta a tributacao de apostas eletronicas" interesses="fiscal,jogos" url="https://example.net/jogos%40aposta" artigos="153"
-expectError "Erro ao cadastrar projeto: dni invalido" cadastrarPEC dni="061222222-Z" ano=2016 ementa="Permite a associacao sindical livre e com estrutura hierarquica" interesses="trabalho" url="https://example.com/sindicato/algo.htm artigos="7,8"
+expectError "Erro ao cadastrar projeto: dni invalido" cadastrarPEC dni="061222222-Z" ano=2016 ementa="Permite a associacao sindical livre e com estrutura hierarquica" interesses="trabalho" url="https://example.com/sindicato/algo.htm" artigos="7,8"
 
 #DNI de pessoas inexistentes
 expectError "Erro ao cadastrar projeto: pessoa inexistente" cadastrarPL dni="060000000-0" ano=2016 ementa="Institui a semana da nutricao nas escolas" interesses="saude,educacao basica" url="http://example.com/semana_saude" conclusivo=true

@@ -1,5 +1,9 @@
-package ECO;
+package ECO.Controladores;
 
+
+import ECO.Pessoa;
+import ECO.PessoaComPartido;
+import ECO.PessoaSemPartido;
 
 import java.util.*;
 
@@ -17,18 +21,16 @@ public class PessoaController
 
     public boolean cadastrarPessoa(String nome, String dni, String estado, String interesses){
         validaParametrosCadastrarPessoa(nome,dni,estado);
-//        validaDNI(dni,0);
         if (this.pessoaMap.containsKey(dni)){
-            throw new IllegalArgumentException("Erro ao cadastrar pessoa: dni ja cadastrado");
+            throw new NullPointerException("Erro ao cadastrar pessoa: dni ja cadastrado");
         }
         this.pessoaMap.put(dni, new PessoaSemPartido(nome,dni,estado,interesses));
         return true;
     }
     public boolean cadastrarPessoa(String nome, String dni, String estado, String interesses, String partido){
         validaParametrosCadastrarPessoa(nome,dni,estado);
-//        validaDNI(dni,0);
         if (this.pessoaMap.containsKey(dni)){
-            throw new IllegalArgumentException("Erro ao cadastrar pessoa: dni ja cadastrado");
+            throw new NullPointerException("Erro ao cadastrar pessoa: dni ja cadastrado");
         }
         this.pessoaMap.put(dni, new PessoaComPartido(nome,dni,estado,interesses,partido));
         return true;
@@ -36,12 +38,11 @@ public class PessoaController
 
     public boolean cadastrarDeputado(String dni, String data)
     {
-//        validaDNI(dni,1);
         validaDNICadastrarDeputado(dni);
-        if (!pessoaMap.containsKey(dni)){
-            throw new IllegalArgumentException("Erro ao cadastrar deputado: pessoa nao encontrada");
+        if (!this.pessoaMap.containsKey(dni)){
+            throw new NullPointerException("Erro ao cadastrar deputado: pessoa nao encontrada");
         }validaData(data);
-        if ("".equals(pessoaMap.get(dni).getPartido().trim())){
+        if (this.pessoaMap.get(dni) instanceof PessoaSemPartido){
             throw new IllegalArgumentException("Erro ao cadastrar deputado: pessoa sem partido");
         }
 
@@ -62,7 +63,7 @@ public class PessoaController
      * @param partido String contendo o nome do partido
      */
     public void cadastraPartido(String partido){
-        if(partido == null || partido.equals("")) throw new IllegalArgumentException("Erro ao cadastrar partido: partido nao pode ser vazio ou nulo");
+        if(partido == null || partido.equals("")) throw new NullPointerException("Erro ao cadastrar partido: partido nao pode ser vazio ou nulo");
         partidoMap.add(partido);
     }
 
