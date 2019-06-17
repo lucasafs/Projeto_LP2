@@ -69,4 +69,12 @@ public class Validador {
         if (url == null || "".equals(url.trim())) throw new IllegalArgumentException("Erro ao cadastrar projeto: url nao pode ser vazio ou nulo");
         if (artigos == null || "".equals(artigos.trim())) throw new IllegalArgumentException("Erro ao cadastrar projeto: artigo nao pode ser vazio ou nulo");
     }
+    public static void validaVotacao(String proximoLocal, String status){
+        if (proximoLocal == null || "".equals(proximoLocal.trim())){
+            throw new IllegalArgumentException("Erro ao votar proposta: proximo local vazio");
+        }
+        if (!("GOVERNISTA".equals(status.toUpperCase()) || "OPOSICAO".equals(status.toUpperCase()) || "LIVRE".equals(status.toUpperCase()))){
+            throw new IllegalArgumentException("Erro ao votar proposta: status invalido");
+        }
+    }
 }

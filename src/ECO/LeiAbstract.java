@@ -28,6 +28,8 @@ public abstract class LeiAbstract{
         return comissaoAtual;
     }
 
+    public String getInteresses() { return this.interesses; }
+
     //public boolean votarComissao(String statusGovernista, String proximoLocal) {
     	
     

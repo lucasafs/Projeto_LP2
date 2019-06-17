@@ -1,5 +1,6 @@
 package ECO.Controladores;
 
+import ECO.Comissao;
 import ECO.Pessoa;
 
 import java.util.ArrayList;
@@ -11,11 +12,13 @@ public class ECOntroller {
     private PessoaController pessoaController;
     private ComissaoController comissaoController;
     private PropostaLeiController propostaLeiController;
+    private VotacaoController votacaoController;
 
     public ECOntroller() {
         this.pessoaController = new PessoaController();
         this.comissaoController = new ComissaoController();
         this.propostaLeiController = new PropostaLeiController();
+        this.votacaoController = new VotacaoController();
     }
 
     public void cadastrarPessoa(String nome, String dni, String estado, String interesses) {
@@ -79,14 +82,22 @@ public class ECOntroller {
     }
 
 	public boolean votarComissao(String codigo, String statusGovernista, String proximoLocal) {
-		if (!this.comissaoController.contemComissao(this.propostaLeiController.getLocalAtual(codigo))){
-		    throw new NullPointerException("Erro ao votar proposta: CCJC nao cadastrada");
-        }
-        return true;
+		validaVotarComissao(codigo, statusGovernista, proximoLocal);
+
+		return this.votacaoController.votarComissao(codigo,statusGovernista);
 	}
 
 	public boolean votarPlenario(String codigo, String statusGovernista, String presentes) {
 		// TODO Auto-generated method stub
 		return false;
 	}
+
+	private void validaVotarComissao(String codigo, String statusGovernista, String proximoLocal){
+        if (!this.comissaoController.contemComissao(this.propostaLeiController.getLocalAtual(codigo))){
+            throw new NullPointerException("Erro ao votar proposta: CCJC nao cadastrada");
+        }
+        if (!this.propostaLeiController.contemProspota(codigo)){
+            throw new NullPointerException("Erro ao votar proposta: projeto inexistente");
+        }validaVotacao(proximoLocal,statusGovernista);
+    }
 }

@@ -4,6 +4,7 @@ package ECOTests;
 import ECO.Controladores.PessoaController;
 import org.junit.jupiter.api.BeforeEach;
 
+import static junit.framework.Assert.assertEquals;
 import static org.junit.jupiter.api.Assertions.*;
 
 class ControllerTest {

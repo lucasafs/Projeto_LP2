@@ -7,22 +7,22 @@ public abstract class Pessoa {
 	/**
 	 * Este atributo representa o nome de uma Pessoa.
 	 */
-    private String nome;
-    
+    protected String nome;
+
     /**
      * Este atributo representa o DNI de uma Pessoa.
      */
-    private String dni;
-    
+    protected String dni;
+
     /**
      * Este atributo representa o estado de uma Pessoa.
      */
-    private String estado;
-    
-    /**
+    protected String estado;
+
+	/**
      * Este atributo representa os interesses de uma Pessoa.
      */
-    private String interesses;
+    protected String interesses;
     /**
      * Construtor utilizado para inicializar os atributos de uma pessoa sem partido.
      * @param nome
@@ -62,16 +62,22 @@ public abstract class Pessoa {
 	 * @return
 	 */
 	public abstract String exibirPessoa();
-	
+
 	/**
 	 * Método para pegar uma função.
 	 * @return
 	 */
 	public abstract Funcao getFuncao();
-	
+
 	/**
 	 * Método que trata o toString de uma pessoa.
 	 */
 	@Override
     public abstract String toString();
+
+	public String getInteresses()
+	{
+		return interesses;
+	}
+
 }

@@ -60,6 +60,12 @@ public class PropostaLeiController {
     public String getLocalAtual(String codigo){
         return this.propostaLeiMap.get(codigo).getComissaoAtual();
     }
+
+    public boolean contemProspota(String codigo){ return this.propostaLeiMap.containsKey(codigo);}
+
+    public String getInteresses(String codigo){
+        return this.propostaLeiMap.get(codigo).getInteresses();
+    }
     
     /*public boolean votarComissao(String codigo, String statusGovernista, String proximoLocal) {
     	this.propostaLeiMap.get(codigo).

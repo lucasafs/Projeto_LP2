@@ -1,13 +1,15 @@
 package ECO;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Esta classe define uma comissão para permitir um discussão mais profunda 
  * sobre um determinado tema.
  */
 public class Comissao {
-	/**
+    public String[][] interessesDeputados;
+    /**
 	 * Este atributo define o tema da comissão.
 	 */
     private String tema;
@@ -31,5 +33,36 @@ public class Comissao {
      */
     public String getTema() {
         return tema;
+    }
+
+    public int contaVotos(String status)
+    {
+        String comparador = "";
+        int contador = 0;
+        if ("GOVERNISTA".equals(status))
+        {
+            comparador = "PartidoGov";
+        } else if ("OPOSICAO".equals(status))
+        {
+            comparador = "PartidoOpo";
+        }
+
+        for (Pessoa deputado: deputados){
+            PessoaComPartido deputadoc = (PessoaComPartido) deputado;
+            if (comparador.equals(deputadoc.getPartido())){
+                    contador++;
+            }
+        }
+        return contador;
+    }
+    public int getTamanhoComissao(){
+        return deputados.size();
+    }
+    public List<String> interessesDeputados(){
+        List<String> interesses = new ArrayList<>();
+        for (Pessoa pessoa: deputados){
+            interesses.add(pessoa.getInteresses());
+        }
+        return interesses;
     }
 }
