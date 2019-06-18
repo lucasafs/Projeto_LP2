@@ -6,7 +6,7 @@ public class PEC extends LeiAbstract {
 
     public PEC(String dni, int ano, String codigo, String ementa, String interesses, String url, String artigos) {
         super(dni, ano, codigo, ementa, interesses, url);
-        this.artigos = artigos;
+        this.artigos = String.join(", ",artigos.split(","));
     }
 
     @Override

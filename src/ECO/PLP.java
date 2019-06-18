@@ -1,13 +1,16 @@
 package ECO;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class PLP extends LeiAbstract{
 
     private String artigos;
 
+
     public PLP(String dni, int ano, String codigo, String ementa, String interesses, String url, String artigos){
         super(dni,ano,codigo,ementa,interesses,url);
-        this.artigos = artigos;
-
+        this.artigos = String.join(", ",artigos.split(","));
     }
 
     @Override

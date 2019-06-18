@@ -30,6 +30,10 @@ public abstract class LeiAbstract{
 
     public String getInteresses() { return this.interesses; }
 
+    public void setComissaoAtual(String comissaoAtual) {
+        this.comissaoAtual = comissaoAtual;
+    }
+
     //public boolean votarComissao(String statusGovernista, String proximoLocal) {
     	
     

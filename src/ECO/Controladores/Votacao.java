@@ -5,24 +5,22 @@ import ECO.Comissao;
 import java.util.Arrays;
 import java.util.List;
 
-public class VotacaoController {
+public class Votacao {
 
     private PropostaLeiController propostaLeiController;
     private ComissaoController comissaoController;
 
-    public VotacaoController()
+    public Votacao(PropostaLeiController propostaLeiController, ComissaoController comissaoController)
     {
-        this.propostaLeiController = new PropostaLeiController();
-        this.comissaoController = new ComissaoController();
+        this.propostaLeiController = propostaLeiController;
+        this.comissaoController = comissaoController;
     }
 
-    public boolean votarComissao(String codigo, String statusGovernista){
+    public boolean votarComissao(String codigo, String statusGovernista, String proximoLocal){
         Comissao comissao = this.comissaoController.getComissao(this.propostaLeiController.getLocalAtual(codigo));
         int votosFavor;
-        if ("GOVERNISTA".equals(statusGovernista.toUpperCase())){
-            votosFavor = comissao.contaVotos("GOVERNISTA");
-        } else if ("OPOSICAO".equals(statusGovernista.toUpperCase())){
-            votosFavor = comissao.contaVotos("OPOSICAO");
+        if ("GOVERNISTA".equals(statusGovernista.toUpperCase()) || "OPOSICAO".equals(statusGovernista.toUpperCase())){
+            votosFavor = comissao.contaVotos(statusGovernista.toUpperCase());
         } else {
             int contaVoto = 0;
             String[] interessesPL = this.propostaLeiController.getInteresses(codigo).split(",");
@@ -39,6 +37,9 @@ public class VotacaoController {
             } votosFavor = contaVoto;
 
         }
-        return (votosFavor >= comissao.getTamanhoComissao() / 2 + 1);
+        if (votosFavor >= comissao.getTamanhoComissao() / 2 + 1){
+            this.propostaLeiController.proximoLocal(codigo,proximoLocal);
+            return true;
+        } return false;
     }
 }

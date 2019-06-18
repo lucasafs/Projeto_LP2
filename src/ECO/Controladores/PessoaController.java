@@ -88,7 +88,7 @@ public class PessoaController
         verificaDeputado(dni,"Erro ao cadastrar projeto:");
     }
 
-    private void verificaDeputado(String dni,String erro){
+    public void verificaDeputado(String dni,String erro){
         if (!this.pessoaMap.containsKey(dni)){
             throw new NullPointerException(erro + " pessoa inexistente");
         }
@@ -97,4 +97,7 @@ public class PessoaController
         }
     }
 
+    public boolean contemPessoa(String dni) {
+        return this.pessoaMap.containsKey(dni);
+    }
 }

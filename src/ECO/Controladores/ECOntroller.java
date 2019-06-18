@@ -1,6 +1,5 @@
 package ECO.Controladores;
 
-import ECO.Comissao;
 import ECO.Pessoa;
 
 import java.util.ArrayList;
@@ -12,13 +11,13 @@ public class ECOntroller {
     private PessoaController pessoaController;
     private ComissaoController comissaoController;
     private PropostaLeiController propostaLeiController;
-    private VotacaoController votacaoController;
+    private Votacao votacaoController;
 
     public ECOntroller() {
         this.pessoaController = new PessoaController();
         this.comissaoController = new ComissaoController();
         this.propostaLeiController = new PropostaLeiController();
-        this.votacaoController = new VotacaoController();
+        this.votacaoController = new Votacao(this.propostaLeiController,this.comissaoController);
     }
 
     public void cadastrarPessoa(String nome, String dni, String estado, String interesses) {
@@ -62,18 +61,21 @@ public class ECOntroller {
     public String cadastrarPL(String dni, int ano, String ementa, String interesses, String url, boolean conclusivo){
         validaCadastroLei(dni,ano,ementa,interesses,url);
         validaDNICadastroProjeto(dni);
+        this.pessoaController.verificaDeputado(dni,"Erro ao cadastrar projeto:");
         return this.propostaLeiController.cadastrarPL(dni, ano, ementa, interesses, url, conclusivo);
     }
 
     public String cadastrarPLP(String dni, int ano, String ementa, String interesses, String url, String artigos){
         validaCadastroLei(dni, ano, ementa, interesses, url, artigos);
         validaDNICadastroProjeto(dni);
+        this.pessoaController.verificaDeputado(dni,"Erro ao cadastrar projeto:");
         return this.propostaLeiController.cadastrarPLP(dni, ano, ementa, interesses, url, artigos);
     }
 
     public String cadastrarPEC(String dni, int ano, String ementa, String interesses, String url, String artigos){
         validaCadastroLei(dni, ano, ementa, interesses, url, artigos);
         validaDNICadastroProjeto(dni);
+        this.pessoaController.verificaDeputado(dni,"Erro ao cadastrar projeto:");
         return this.propostaLeiController.cadastrarPEC(dni, ano, ementa, interesses, url, artigos);
     }
 
@@ -84,7 +86,7 @@ public class ECOntroller {
 	public boolean votarComissao(String codigo, String statusGovernista, String proximoLocal) {
 		validaVotarComissao(codigo, statusGovernista, proximoLocal);
 
-		return this.votacaoController.votarComissao(codigo,statusGovernista);
+		return this.votacaoController.votarComissao(codigo,statusGovernista,proximoLocal);
 	}
 
 	public boolean votarPlenario(String codigo, String statusGovernista, String presentes) {
@@ -94,7 +96,7 @@ public class ECOntroller {
 
 	private void validaVotarComissao(String codigo, String statusGovernista, String proximoLocal){
         if (!this.comissaoController.contemComissao(this.propostaLeiController.getLocalAtual(codigo))){
-            throw new NullPointerException("Erro ao votar proposta: CCJC nao cadastrada");
+            throw new NullPointerException("Erro ao votar proposta: " + this.propostaLeiController.getLocalAtual(codigo) + " nao cadastrada");
         }
         if (!this.propostaLeiController.contemProspota(codigo)){
             throw new NullPointerException("Erro ao votar proposta: projeto inexistente");
