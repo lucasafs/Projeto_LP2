@@ -13,4 +13,10 @@ public class PEC extends LeiAbstract {
     public String exibirProjeto() {
         return "Projeto de Emenda Constitucional - " + this.codigo + " - " + this.autorDNI + " - " + this.ementa + " - " + this.artigos + " - " + this.situacao;
     }
+
+    @Override
+    public boolean isConclusiva()
+    {
+        return false;
+    }
 }

@@ -17,4 +17,10 @@ public class PLP extends LeiAbstract{
     public String exibirProjeto() {
         return "Projeto de Lei Complementar - " + this.codigo + " - " + this.autorDNI + " - " + this.ementa + " - " + this.artigos + " - " + this.situacao;
     }
+
+    @Override
+    public boolean isConclusiva()
+    {
+        return false;
+    }
 }

@@ -17,4 +17,10 @@ public class PL extends LeiAbstract{
             return "Projeto de Lei - " + this.codigo + " - " + this.autorDNI + " - " + this.ementa + " - " + this.situacao;
         }
     }
+
+    @Override
+    public boolean isConclusiva()
+    {
+        return this.conclusiva;
+    }
 }

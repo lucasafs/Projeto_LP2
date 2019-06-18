@@ -85,6 +85,11 @@ public class ECOntroller {
 
 	public boolean votarComissao(String codigo, String statusGovernista, String proximoLocal) {
 		validaVotarComissao(codigo, statusGovernista, proximoLocal);
+		if(this.propostaLeiController.getProposta(codigo).isConclusiva()){
+		    this.votacaoController.votarComissaoConclusiva(codigo, statusGovernista, proximoLocal);
+        } else {
+
+        }
 
 		return this.votacaoController.votarComissao(codigo,statusGovernista,proximoLocal);
 	}
