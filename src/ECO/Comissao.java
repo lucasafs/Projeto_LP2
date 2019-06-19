@@ -37,19 +37,11 @@ public class Comissao {
 
     public int contaVotos(String status)
     {
-        String comparador = "";
         int contador = 0;
-        if ("GOVERNISTA".equals(status))
-        {
-            comparador = "PartidoGov";
-        } else if ("OPOSICAO".equals(status))
-        {
-            comparador = "PartidoOpo";
-        }
-
+        boolean comparador = "GOVERNISTA".equals(status);
         for (Pessoa deputado: deputados){
             PessoaComPartido deputadoc = (PessoaComPartido) deputado;
-            if (comparador.equals(deputadoc.getPartido())){
+            if (comparador && ){
                     contador++;
             }
         }

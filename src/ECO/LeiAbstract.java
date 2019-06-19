@@ -14,7 +14,6 @@ public abstract class LeiAbstract{
     protected String comissaoAtual;
     protected String url;
     protected Map<String,String> tramitacao;
-    protected boolean trami;
 
     public LeiAbstract(String dni, int ano, String codigo, String ementa, String interesses, String url){
         this.autorDNI = dni;
@@ -24,9 +23,8 @@ public abstract class LeiAbstract{
         this.interesses = interesses;
         this.url = url;
         this.comissaoAtual = "CCJC";
-        this.situacao = "EM VOTACAO (" + this.comissaoAtual + ")";
+        this.situacao = "EM VOTACAO";
         this.tramitacao = new LinkedHashMap<>();
-        this.trami = true;
 
     }
 
@@ -49,17 +47,16 @@ public abstract class LeiAbstract{
     public abstract boolean isConclusiva();
 
     public void setSituacao(String status){
-        this.situacao = status + " (" + this.comissaoAtual + ")";
+        this.situacao = status;
     }
 
-    public void setTrami(boolean trami)
+    public String getSituacaoComissao()
     {
-        this.trami = trami;
+        return situacao  + " (" + this.comissaoAtual + ")";
     }
-
-    public boolean isTrami()
+    public String getSituacao()
     {
-        return trami;
+        return situacao ;
     }
 
     //public boolean votarComissao(String statusGovernista, String proximoLocal) {

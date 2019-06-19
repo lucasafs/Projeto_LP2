@@ -87,7 +87,7 @@ public class ECOntroller {
 		validaVotarComissao(codigo, statusGovernista, proximoLocal);
 		if(this.propostaLeiController.getProposta(codigo).isConclusiva()){
 		    this.votacaoController.votarComissaoConclusiva(codigo, statusGovernista, proximoLocal);
-        } else {
+        } else { this.votacaoController.votarComissao(codigo, statusGovernista, proximoLocal);
 
         }
 
@@ -100,11 +100,14 @@ public class ECOntroller {
 	}
 
 	private void validaVotarComissao(String codigo, String statusGovernista, String proximoLocal){
+        validaVotacao(proximoLocal,statusGovernista);
+        if (!this.propostaLeiController.contemProspota(codigo)){
+            throw new NullPointerException("Erro ao votar proposta: projeto inexistente");
+        }
+
         if (!this.comissaoController.contemComissao(this.propostaLeiController.getLocalAtual(codigo))){
             throw new NullPointerException("Erro ao votar proposta: " + this.propostaLeiController.getLocalAtual(codigo) + " nao cadastrada");
         }
-        if (!this.propostaLeiController.contemProspota(codigo)){
-            throw new NullPointerException("Erro ao votar proposta: projeto inexistente");
-        }validaVotacao(proximoLocal,statusGovernista);
+
     }
 }

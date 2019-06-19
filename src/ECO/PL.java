@@ -33,9 +33,9 @@ public class PL extends LeiAbstract{
     @Override
     public String exibirProjeto() {
         if (this.conclusiva){
-            return "Projeto de Lei - " + this.codigo + " - " + this.autorDNI + " - " + this.ementa + " - Conclusiva - " + this.situacao;
+            return "Projeto de Lei - " + this.codigo + " - " + this.autorDNI + " - " + this.ementa + " - Conclusiva - " + super.getSituacaoComissao();
         } else {
-            return "Projeto de Lei - " + this.codigo + " - " + this.autorDNI + " - " + this.ementa + " - " + this.situacao;
+            return "Projeto de Lei - " + this.codigo + " - " + this.autorDNI + " - " + this.ementa + " - " + super.getSituacaoComissao();
         }
     }
 

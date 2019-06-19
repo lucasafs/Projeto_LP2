@@ -22,7 +22,7 @@ public class Votacao {
     public boolean votarComissao(String codigo, String statusGovernista, String proximoLocal){
         Comissao comissao = this.comissaoController.getComissao(this.propostaLeiController.getLocalAtual(codigo));
         int votosFavor;
-        if (!this.propostaLeiController.getProposta(codigo).isTrami()){
+        if (this.propostaLeiController.getProposta(codigo).getSituacao().equals("ARQUIVADO")){
             throw new IllegalArgumentException("Erro ao votar proposta: tramitacao encerrada");
         }
         if ("GOVERNISTA".equals(statusGovernista.toUpperCase()) || "OPOSICAO".equals(statusGovernista.toUpperCase())){
@@ -46,11 +46,12 @@ public class Votacao {
         if (votosFavor >= comissao.getTamanhoComissao() / 2 + 1){
             this.propostaLeiController.proximoLocal(codigo,proximoLocal);
             this.propostaLeiController.adicionaTramitacao(codigo,this.propostaLeiController.getLocalAtual(codigo),"APROVADA");
-            this.propostaLeiController.getProposta(codigo).setTrami(false);
+            this.propostaLeiController.getProposta(codigo).setSituacao("APROVADA");
             return true;
         }
         this.propostaLeiController.proximoLocal(codigo,proximoLocal);
-        this.propostaLeiController.adicionaTramitacao(codigo,this.propostaLeiController.getLocalAtual(codigo),"REPROVADA");
+        this.propostaLeiController.adicionaTramitacao(codigo,this.propostaLeiController.getLocalAtual(codigo),"ARQUIVADA");
+        this.propostaLeiController.getProposta(codigo).setSituacao("ARQUIVADA");
         return false;
     }
 
@@ -60,7 +61,6 @@ public class Votacao {
         if(this.propostaLeiController.getLocalAtual(codigo).equals("CCJC")){
             if(!votarComissao(codigo,statusGovernista,proximoLocal)){
                 proposta.setSituacao("ARQUIVADA");
-                proposta.setTrami(false);
                 return false;
             } else if(votarComissao(codigo,statusGovernista,proximoLocal)){
                 proposta.setSituacao("APROVADA");
@@ -69,11 +69,9 @@ public class Votacao {
         } else {
             if(votarComissao(codigo,statusGovernista,proximoLocal)){
                 proposta.setSituacao("APROVADA");
-                proposta.setTrami(false);
                 return true;
             } else {
                 proposta.setSituacao("ARQUIVADA");
-                proposta.setTrami(false);
                 return false;
             }
         } return false;
