@@ -1,6 +1,6 @@
 package ECO.Controladores;
 
-import ECO.Pessoa;
+import ECO.PESSOA.Pessoa;
 
 import java.util.ArrayList;
 
@@ -12,12 +12,14 @@ public class ECOntroller {
     private ComissaoController comissaoController;
     private PropostaLeiController propostaLeiController;
     private Votacao votacaoController;
+    private PartidoController partidoController;
 
     public ECOntroller() {
         this.pessoaController = new PessoaController();
         this.comissaoController = new ComissaoController();
         this.propostaLeiController = new PropostaLeiController();
-        this.votacaoController = new Votacao(this.propostaLeiController,this.comissaoController);
+        this.partidoController = new PartidoController();
+        this.votacaoController = new Votacao(this.propostaLeiController,this.comissaoController,this.partidoController,this.pessoaController);
     }
 
     public void cadastrarPessoa(String nome, String dni, String estado, String interesses) {
@@ -37,11 +39,11 @@ public class ECOntroller {
     }
 
     public void cadastrarPartido(String partido){
-        pessoaController.cadastraPartido(partido);
+        partidoController.cadastraPartido(partido);
     }
 
     public String exibirBase(){
-        return pessoaController.exibirBase();
+        return partidoController.exibirBase();
     }
 
     public void cadastrarComissao(String tema, String politicos){
@@ -85,29 +87,36 @@ public class ECOntroller {
 
 	public boolean votarComissao(String codigo, String statusGovernista, String proximoLocal) {
 		validaVotarComissao(codigo, statusGovernista, proximoLocal);
-		if(this.propostaLeiController.getProposta(codigo).isConclusiva()){
-		    this.votacaoController.votarComissaoConclusiva(codigo, statusGovernista, proximoLocal);
-        } else { this.votacaoController.votarComissao(codigo, statusGovernista, proximoLocal);
 
-        }
+		return this.votacaoController.votarComissao(codigo, statusGovernista, proximoLocal);
 
-		return this.votacaoController.votarComissao(codigo,statusGovernista,proximoLocal);
-	}
+    }
 
 	public boolean votarPlenario(String codigo, String statusGovernista, String presentes) {
-		// TODO Auto-generated method stub
-		return false;
+		return this.votacaoController.votarPlenario(codigo, statusGovernista, presentes);
 	}
 
 	private void validaVotarComissao(String codigo, String statusGovernista, String proximoLocal){
-        validaVotacao(proximoLocal,statusGovernista);
+        if (proximoLocal == null || "".equals(proximoLocal.trim())){
+            throw new IllegalArgumentException("Erro ao votar proposta: proximo local vazio");
+        }
+        if (!("GOVERNISTA".equals(statusGovernista.toUpperCase()) || "OPOSICAO".equals(statusGovernista.toUpperCase()) || "LIVRE".equals(statusGovernista.toUpperCase()))){
+            throw new IllegalArgumentException("Erro ao votar proposta: status invalido");
+        }
         if (!this.propostaLeiController.contemProspota(codigo)){
             throw new NullPointerException("Erro ao votar proposta: projeto inexistente");
         }
-
         if (!this.comissaoController.contemComissao(this.propostaLeiController.getLocalAtual(codigo))){
             throw new NullPointerException("Erro ao votar proposta: " + this.propostaLeiController.getLocalAtual(codigo) + " nao cadastrada");
         }
 
+        String situacao = this.propostaLeiController.getSituacao(codigo);
+        if(situacao.equals("APROVADA") || situacao.equals("ARQUIVADA")){
+            throw new RuntimeException("Erro ao votar proposta: tramitacao encerrada");
+        }
+        if (situacao.equals("plenario") || situacao.equals("Plenario - 1o turno")
+                || situacao.equals("Plenario - 2o turno")){
+            throw new RuntimeException("Erro ao votar proposta: proposta encaminhada ao plenario");
+        }
     }
 }

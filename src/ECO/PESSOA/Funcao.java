@@ -1,4 +1,4 @@
-package ECO;
+package ECO.PESSOA;
 
 /**
  * Esta classe define uma Função interface.
@@ -10,4 +10,6 @@ public interface Funcao {
 	 * @return
 	 */
     String toString();
+
+    void criaLei();
 }

@@ -1,4 +1,6 @@
-package ECO;
+package ECO.COMISSAO;
+
+import ECO.PESSOA.Pessoa;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -35,21 +37,23 @@ public class Comissao {
         return tema;
     }
 
-    public int contaVotos(String status)
-    {
-        int contador = 0;
-        boolean comparador = "GOVERNISTA".equals(status);
-        for (Pessoa deputado: deputados){
-            PessoaComPartido deputadoc = (PessoaComPartido) deputado;
-            if (comparador && ){
-                    contador++;
-            }
-        }
-        return contador;
-    }
+//    public int contaVotos(String status)
+//    {
+//        int contador = 0;
+//        boolean comparador = "GOVERNISTA".equals(status);
+//        for (Pessoa deputado: deputados){
+//            PessoaComPartido deputadoc = (PessoaComPartido) deputado;
+//            if (status.equals("GOVERNISTA")){
+//                if ()
+//                contador++;
+//            }
+//        }
+//        return contador;
+//    }
     public int getTamanhoComissao(){
         return deputados.size();
     }
+
     public List<String> interessesDeputados(){
         List<String> interesses = new ArrayList<>();
         for (Pessoa pessoa: deputados){
@@ -57,4 +61,9 @@ public class Comissao {
         }
         return interesses;
     }
+
+    public ArrayList<Pessoa> getDeputados(){
+        return this.deputados;
+    }
+
 }

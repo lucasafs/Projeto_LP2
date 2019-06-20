@@ -1,6 +1,4 @@
-package ECO;
-
-import java.text.SimpleDateFormat;
+package ECO.PESSOA;
 
 /**
  * Esta classe define um deputado.
@@ -34,5 +32,9 @@ public class Deputado implements Funcao {
     public String toString()
     {
         return data.substring(0,2)+"/"+data.substring(2,4)+"/"+data.substring(4,8) + " - " + this.leis + " Leis";
+    }
+
+    public void criaLei(){
+        this.leis++;
     }
 }

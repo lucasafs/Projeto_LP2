@@ -1,4 +1,4 @@
-package ECO;
+package ECO.PROJETOLEI;
 
 /**
  * Esta classe define uma propsota de emenda a constituição (PEC),

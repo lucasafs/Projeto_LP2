@@ -1,4 +1,4 @@
-package ECO;
+package ECO.PESSOA;
 /**
  * Esta classe define uma pessoa que possui partido.
  */
@@ -70,6 +70,10 @@ public class PessoaComPartido extends Pessoa {
 			return this.nome + " - " + this.dni + " (" + this.estado + ") - " + this.partido + " - " + this.funcao.toString();
 		}
 		return this.nome + " - " + this.dni + " (" + this.estado + ") - " + this.partido +  " - Interesses: " + this.interesses + " - " + this.funcao.toString();
+	}
+
+	public void criaLei(){
+		this.funcao.criaLei();
 	}
 	
 

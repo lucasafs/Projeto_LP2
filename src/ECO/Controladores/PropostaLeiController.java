@@ -1,6 +1,9 @@
 package ECO.Controladores;
 
-import ECO.*;
+import ECO.PROJETOLEI.LeiAbstract;
+import ECO.PROJETOLEI.PEC;
+import ECO.PROJETOLEI.PL;
+import ECO.PROJETOLEI.PLP;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -79,6 +82,22 @@ public class PropostaLeiController {
 
     public LeiAbstract getProposta(String codigo){
         return this.propostaLeiMap.get(codigo);
+    }
+
+    public String getSituacao(String codigo) {
+        return this.propostaLeiMap.get(codigo).getSituacao();
+    }
+
+    public void setSituacao(String codigo, String situacao){
+        this.propostaLeiMap.get(codigo).setSituacao(situacao);
+    }
+
+    public String getAutorDNI(String codigo){
+        return this.propostaLeiMap.get(codigo).getAutorDNI();
+    }
+
+    public void setComissaoAtual(String codigo, String comissaoAtual){
+        this.propostaLeiMap.get(codigo).setComissaoAtual(comissaoAtual);
     }
     
     /*public boolean votarComissao(String codigo, String statusGovernista, String proximoLocal) {

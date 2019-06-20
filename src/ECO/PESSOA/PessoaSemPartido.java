@@ -1,4 +1,4 @@
-package ECO;
+package ECO.PESSOA;
 /**
  * Esta classe define uma pessoa sem partido.
  */

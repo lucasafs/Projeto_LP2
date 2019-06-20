@@ -1,7 +1,4 @@
-package ECO;
-
-import java.util.ArrayList;
-import java.util.List;
+package ECO.PROJETOLEI;
 
 public class PLP extends LeiAbstract{
 

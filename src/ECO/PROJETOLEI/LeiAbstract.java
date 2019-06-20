@@ -1,4 +1,4 @@
-package ECO;
+package ECO.PROJETOLEI;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -54,9 +54,14 @@ public abstract class LeiAbstract{
     {
         return situacao  + " (" + this.comissaoAtual + ")";
     }
+
     public String getSituacao()
     {
         return situacao ;
+    }
+
+    public String getAutorDNI() {
+        return autorDNI;
     }
 
     //public boolean votarComissao(String statusGovernista, String proximoLocal) {
