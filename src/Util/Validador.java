@@ -77,6 +77,13 @@ public class Validador {
             throw new IllegalArgumentException("Erro ao cadastrar projeto: interesse nao pode ser vazio ou nulo");
         if (url == null || "".equals(url.trim()))
             throw new IllegalArgumentException("Erro ao cadastrar projeto: url nao pode ser vazio ou nulo");
+        if (ano < 1988){
+            throw new IllegalArgumentException("Erro ao cadastrar projeto: ano anterior a 1988");
+        }
+        int anoAtual = Calendar.getInstance().get(Calendar.YEAR);
+        if (ano > anoAtual){
+            throw new IllegalArgumentException("Erro ao cadastrar projeto: ano posterior ao ano atual");
+        }
     }
 
     public static void validaCadastroLei(String dni, int ano, String ementa, String interesses, String url, String artigos) {

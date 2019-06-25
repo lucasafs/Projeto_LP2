@@ -12,7 +12,10 @@ public class PLP extends LeiAbstract{
 
     @Override
     public String exibirProjeto() {
-        return "Projeto de Lei Complementar - " + this.codigo + " - " + this.autorDNI + " - " + this.ementa + " - " + this.artigos + " - " + super.getSituacaoComissao();
+        if (this.situacao.equals("EM VOTACAO")){
+            return "Projeto de Lei Complementar - " + this.codigo + " - " + this.autorDNI + " - " + this.ementa + " - " + this.artigos + " - " + super.getSituacaoComissao();
+        }
+        return "Projeto de Lei Complementar - " + this.codigo + " - " + this.autorDNI + " - " + this.ementa + " - " + this.artigos + " - " + super.getSituacao();
     }
 
     @Override

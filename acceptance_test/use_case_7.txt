@@ -153,10 +153,10 @@ expect true votarComissao codigo=${pec2} statusGovernista="GOVERNISTA" proximoLo
 expect true votarComissao codigo=${pec2} statusGovernista="GOVERNISTA" proximoLocal="plenario"
 expect "Projeto de Emenda Constitucional - PEC 2/2016 - 071222222-0 - Ementa PEC - 7, 8 - EM VOTACAO (Plenario - 1o turno)" exibirProjeto codigo=${pec2}
 # 1º turno
-expect true votarPlenario codigo=${pec2} statusGovernista="LIVRE" presentes="071111111-0,071222222-0,071333333-0,071444444-0,071555555-0,071666666-0,071777777-0"
+expect true votarPlenario codigo=${pec2} statusGovernista="LIVRE" presentes="071111111-0,071222222-0,071333333-0,071444444-0,071555555-0,071666666-0,071777777-0,071888888-0"
 expect "Projeto de Emenda Constitucional - PEC 2/2016 - 071222222-0 - Ementa PEC - 7, 8 - EM VOTACAO (Plenario - 2o turno)" exibirProjeto codigo=${pec2}
 # 2º turno
-expect true votarPlenario codigo=${pec2} statusGovernista="LIVRE" presentes="071111111-0,071222222-0,071333333-0,071444444-0,071555555-0,071666666-0,071777777-0"
+expect true votarPlenario codigo=${pec2} statusGovernista="LIVRE" presentes="071111111-0,071222222-0,071333333-0,071444444-0,071555555-0,071666666-0,071777777-0,071888888-0"
 expect "Projeto de Emenda Constitucional - PEC 2/2016 - 071222222-0 - Ementa PEC - 7, 8 - APROVADO" exibirProjeto codigo=${pec2}
 expect "POL: M2 - 071222222-0 (PE) - PartidoGov - Interesses: educacao,seguranca publica,saude - 29/02/2016 - 4 Leis" exibirPessoa dni="071222222-0"
 

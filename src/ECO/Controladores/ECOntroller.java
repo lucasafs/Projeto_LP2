@@ -86,38 +86,10 @@ public class ECOntroller {
     }
 
 	public boolean votarComissao(String codigo, String statusGovernista, String proximoLocal) {
-		validaVotarComissao(codigo, statusGovernista, proximoLocal);
-
 		return this.votacaoController.votarComissao(codigo, statusGovernista, proximoLocal);
-
     }
 
 	public boolean votarPlenario(String codigo, String statusGovernista, String presentes) {
 		return this.votacaoController.votarPlenario(codigo, statusGovernista, presentes);
 	}
-
-	private void validaVotarComissao(String codigo, String statusGovernista, String proximoLocal){
-        if (proximoLocal == null || "".equals(proximoLocal.trim())){
-            throw new IllegalArgumentException("Erro ao votar proposta: proximo local vazio");
-        }
-        if (!("GOVERNISTA".equals(statusGovernista.toUpperCase()) || "OPOSICAO".equals(statusGovernista.toUpperCase()) || "LIVRE".equals(statusGovernista.toUpperCase()))){
-            throw new IllegalArgumentException("Erro ao votar proposta: status invalido");
-        }
-        if (!this.propostaLeiController.contemProspota(codigo)){
-            throw new NullPointerException("Erro ao votar proposta: projeto inexistente");
-        }
-        if (!this.comissaoController.contemComissao(this.propostaLeiController.getLocalAtual(codigo))){
-            throw new NullPointerException("Erro ao votar proposta: " + this.propostaLeiController.getLocalAtual(codigo) + " nao cadastrada");
-        }
-
-        String situacao = this.propostaLeiController.getSituacao(codigo);
-        String local = this.propostaLeiController.getLocalAtual(codigo);
-        if(situacao.equals("APROVADA") || situacao.equals("ARQUIVADA")){
-            throw new RuntimeException("Erro ao votar proposta: tramitacao encerrada");
-        }
-        if (situacao.equals("plenario") || local.equals("Plenario - 1o turno")
-                || local.equals("Plenario - 2o turno")){
-            throw new RuntimeException("Erro ao votar proposta: proposta encaminhada ao plenario");
-        }
-    }
 }

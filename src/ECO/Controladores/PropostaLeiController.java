@@ -11,29 +11,51 @@ import java.util.Map;
 public class PropostaLeiController {
 
     private Map<String, LeiAbstract> propostaLeiMap;
-    private int contLeiPL;
-    private int contLeiPLP;
-    private int contLeiPEC;
+    private Map<Integer,Integer> contLeisPL;
+    private Map<Integer,Integer> contLeisPLP;
+    private Map<Integer,Integer> contLeisPEC;
+
 
     public PropostaLeiController(){
         this.propostaLeiMap = new HashMap<>();
-        this.contLeiPL = 1;
-        this.contLeiPLP = 1;
-        this.contLeiPEC = 1;
+        this.contLeisPL = new HashMap<>();
+        this.contLeisPLP = new HashMap<>();
+        this.contLeisPEC = new HashMap<>();
     }
 
     public String cadastrarPL(String dni, int ano, String ementa, String interesses, String url, boolean conclusivo){
-        String codigo = "PL " + this.contLeiPL++ + "/" + ano;
+        if (this.contLeisPL.containsKey(ano)){
+            Integer contador = this.contLeisPL.get(ano);
+            contador++;
+            this.contLeisPL.put(ano,contador);
+        } else {
+            this.contLeisPL.put(ano,1);
+        }
+        String codigo = "PL " + this.contLeisPL.get(ano) + "/" + ano;
         this.propostaLeiMap.put(codigo,new PL(dni,ano,codigo,ementa,interesses,url,conclusivo));
         return codigo;
     }
     public String cadastrarPLP(String dni, int ano, String ementa, String interesses, String url, String artigos){
-        String codigo = "PLP " + this.contLeiPLP++ + "/" + ano;
+        if (this.contLeisPLP.containsKey(ano)){
+            Integer contador = this.contLeisPLP.get(ano);
+            contador++;
+            this.contLeisPLP.put(ano,contador);
+        } else {
+            this.contLeisPLP.put(ano,1);
+        }
+        String codigo = "PLP " + this.contLeisPLP.get(ano) + "/" + ano;
         this.propostaLeiMap.put(codigo,new PLP(dni,ano,codigo,ementa,interesses,url,artigos));
         return codigo;
     }
     public String cadastrarPEC(String dni, int ano, String ementa, String interesses, String url, String artigos){
-        String codigo = "PEC " + this.contLeiPEC++ + "/" + ano;
+        if (this.contLeisPEC.containsKey(ano)){
+            Integer contador = this.contLeisPEC.get(ano);
+            contador++;
+            this.contLeisPEC.put(ano,contador);
+        } else {
+            this.contLeisPEC.put(ano,1);
+        }
+        String codigo = "PEC " + this.contLeisPEC.get(ano) + "/" + ano;
         this.propostaLeiMap.put(codigo,new PEC(dni,ano,codigo,ementa,interesses,url,artigos));
         return codigo;
     }
