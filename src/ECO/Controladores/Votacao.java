@@ -63,7 +63,13 @@ public class Votacao {
                 this.propostaLeiController.setSituacao(codigo,"EM VOTACAO");
             }
         } else {
-            this.propostaLeiController.setComissaoAtual(codigo, proximoLocal);
+            System.out.println(proximoLocal + " " + codigo);
+            if ("plenario".equals(proximoLocal)) {
+                this.propostaLeiController.setComissaoAtual(codigo, "Plenario - 1o turno");
+            } else {
+                this.propostaLeiController.setComissaoAtual(codigo, proximoLocal);
+            }
+            this.propostaLeiController.setSituacao(codigo,"EM VOTACAO");
         }
         return true;
     } else {
@@ -98,8 +104,9 @@ public class Votacao {
 
     private void validaVotacaoPlenario(String codigo, String deputados){
         String situacao = this.propostaLeiController.getProposta(codigo).getSituacao();
+        String local = this.propostaLeiController.getLocalAtual(codigo);
         String[] deputadosLista = deputados.split(",");
-        int totalDeputados = this.comissaoController.totalDeputados();
+        int totalDeputados = this.pessoaController.totalDeputados();
         if (!(this.propostaLeiController.getProposta(codigo) instanceof PEC)){
             if (deputadosLista.length < (totalDeputados / 2 + 1)){
                 throw new RuntimeException("Erro ao votar proposta: quorum invalido");
@@ -113,7 +120,7 @@ public class Votacao {
         if(!situacao.equals("EM VOTACAO")){
             throw new RuntimeException("Erro ao votar proposta: tramitacao encerrada");
         }
-        if (!("plenario".equals(situacao)||"Plenario - 1o turno".equals(situacao)||"Plenario - 2o turno".equals(situacao))){
+        if (!("Plenario - 1o turno".equals(local)||"Plenario - 2o turno".equals(local))){
             throw new RuntimeException("Erro ao votar proposta: tramitacao em comissao");
         }
 

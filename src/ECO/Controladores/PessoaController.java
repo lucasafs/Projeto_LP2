@@ -83,4 +83,14 @@ public class PessoaController
         PessoaComPartido pessoaComPartido = (PessoaComPartido) pessoa;
         pessoaComPartido.criaLei();
     }
+
+    public int totalDeputados(){
+        int cont = 0;
+        for (Pessoa pessoa: this.pessoaMap.values()){
+            if (pessoa.getFuncao() != null){
+                cont++;
+            }
+        }
+        return cont;
+    }
 }

@@ -111,11 +111,12 @@ public class ECOntroller {
         }
 
         String situacao = this.propostaLeiController.getSituacao(codigo);
+        String local = this.propostaLeiController.getLocalAtual(codigo);
         if(situacao.equals("APROVADA") || situacao.equals("ARQUIVADA")){
             throw new RuntimeException("Erro ao votar proposta: tramitacao encerrada");
         }
-        if (situacao.equals("plenario") || situacao.equals("Plenario - 1o turno")
-                || situacao.equals("Plenario - 2o turno")){
+        if (situacao.equals("plenario") || local.equals("Plenario - 1o turno")
+                || local.equals("Plenario - 2o turno")){
             throw new RuntimeException("Erro ao votar proposta: proposta encaminhada ao plenario");
         }
     }

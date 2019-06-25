@@ -22,7 +22,10 @@ public class Facade {
      * @param args
      */
     public static void main(String[] args) {
-        args = new String[]{"ECO.FACADE.Facade", "Projeto_LP2/acceptance_test/use_case_1.txt", "Projeto_LP2/acceptance_test/use_case_2.txt", "Projeto_LP2/acceptance_test/use_case_3.txt", "Projeto_LP2/acceptance_test/use_case_4.txt", "Projeto_LP2/acceptance_test/use_case_5.txt", "Projeto_LP2/acceptance_test/use_case_6.txt","Projeto_LP2/acceptance_test/use_case_7.txt"};
+        args = new String[]{"ECO.FACADE.Facade", //"Projeto_LP2/acceptance_test/use_case_1.txt", "Projeto_LP2/acceptance_test/use_case_2.txt",
+                //"Projeto_LP2/acceptance_test/use_case_3.txt", "Projeto_LP2/acceptance_test/use_case_4.txt", "Projeto_LP2/acceptance_test/use_case_5.txt",
+                //"Projeto_LP2/acceptance_test/use_case_6.txt",
+                "Projeto_LP2/acceptance_test/use_case_7.txt"};
         EasyAccept.main(args);
     }
 //    public static void main(String[] args) {

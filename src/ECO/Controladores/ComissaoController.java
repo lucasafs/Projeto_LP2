@@ -27,14 +27,4 @@ public class ComissaoController {
         return this.comissaoMap.get(tema);
     }
 
-    public int totalDeputados(){
-        ArrayList<Integer> valores = new ArrayList<>();
-        int sum = 0;
-        this.comissaoMap.values().stream().map(comissao -> valores.add(comissao.getTamanhoComissao()));
-
-        for (int valor: valores){
-            sum += valor;
-        }
-        return sum;
-    }
 }
