@@ -1,34 +1,21 @@
 package ECO.PESSOA;
 
 /**
- * Esta classe define uma Pessoa.
+ * Classe abstrata para a criacao de uma pessoa, composta por um nome, dni, estado e interesses.
  */
 public abstract class Pessoa {
-	/**
-	 * Este atributo representa o nome de uma Pessoa.
-	 */
+
     protected String nome;
-
-    /**
-     * Este atributo representa o DNI de uma Pessoa.
-     */
     protected String dni;
-
-    /**
-     * Este atributo representa o estado de uma Pessoa.
-     */
     protected String estado;
-
-	/**
-     * Este atributo representa os interesses de uma Pessoa.
-     */
     protected String interesses;
+
     /**
-     * Construtor utilizado para inicializar os atributos de uma pessoa sem partido.
-     * @param nome
-     * @param dni
-     * @param estado
-     * @param interesses
+     * Construtor utilizado para criar uma pessoa composta por nome, dni, estado e interesses.
+     * @param nome nome da pessoa.
+     * @param dni dni referente a pessoa.
+     * @param estado estado do brasil referente a pessoa.
+     * @param interesses interesses da pessoa.
      */
 	public Pessoa(String nome, String dni, String estado, String interesses) {
 		this.nome = nome;
@@ -36,45 +23,33 @@ public abstract class Pessoa {
 		this.estado = estado;
 		this.interesses = interesses;
 	}
-    /**
-     * Construtor utilizado para inicializar os atributos de uma Pessoa que
-     * possui partido, logo será um deputado.
-     * @param nome
-     * @param dni
-     * @param estado
-     * @param interesses
-     * @param partido
-     */
-	public Pessoa(String nome, String dni, String estado, String interesses, String partido) {
-		this.nome = nome;
-		this.dni = dni;
-		this.estado = estado;
-		this.interesses = interesses;
-	}
+
 	/**
-	 * Método boolean para o cadastro de deputado.
-	 * @param data
-	 * @return
+	 * Metodo abstrato para realizar o cadastro de um Deputado.
+	 * @param data data de inicio de mandato.
 	 */
 	public abstract boolean cadastraDeputado(String data);
+
 	/**
-	 * Representção textual de uma pessoa.
-	 * @return
+	 * Metodo abstrato utilizado para exibir pessoa.
 	 */
 	public abstract String exibirPessoa();
 
 	/**
-	 * Método para pegar uma função.
-	 * @return
+	 * Metodo abstrato para acessar uma funcao.
 	 */
 	public abstract Funcao getFuncao();
 
 	/**
-	 * Método que trata o toString de uma pessoa.
+	 * Metodo abstrato para criar a representacao textual de uma pessoa.
 	 */
 	@Override
     public abstract String toString();
 
+	/**
+	 * Metodo para acessar os interesses de uma pessoa.
+	 * @return retorna uma String com os interesses de pessoa.
+	 */
 	public String getInteresses()
 	{
 		return interesses;

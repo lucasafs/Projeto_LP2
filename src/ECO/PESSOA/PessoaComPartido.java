@@ -1,23 +1,19 @@
 package ECO.PESSOA;
 /**
- * Esta classe define uma pessoa que possui partido.
+ * Classe utilizada para a criacao de uma pessoa com partido, composta por um nome, dni, estado, interesses e partido.
  */
 public class PessoaComPartido extends Pessoa {
-	/**
-	 * Atributo que representa a string partido.
-	 */
+
 	private String partido;
-	/**
-	 * Atributo representa uma função do tipo função.
-	 */
 	private Funcao funcao;
+
 	/**
-	 * Construtor utilizado para inicializar os atributos de uma pessoa com partido.
-	 * @param nome
-	 * @param dni
-	 * @param estado
-	 * @param interesses
-	 * @param partido
+	 * Construtor utilizado para criar uma pessoa composta por nome, dni, estado e interesses.
+	 * @param nome nome da pessoa.
+	 * @param dni dni referente a pessoa.
+	 * @param estado estado do brasil referente a pessoa.
+	 * @param interesses interesses da pessoa.
+	 * @param partido partido politico de pessoa.
 	 */
 	public PessoaComPartido(String nome, String dni, String estado, String interesses, String partido) {
 		super(nome, dni, estado, interesses);
@@ -25,21 +21,26 @@ public class PessoaComPartido extends Pessoa {
 		this.funcao = null;
 		}
 	/**
-	 * Método é um boolean para cadastro de um deputado.
+	 * Metodo utilizado para realizar o cadastro de um Deputado.
+	 * @param data data de inicio de mandato.
+	 * @return retorna True caso consiga realizar o cadastro e False em demais casos.
 	 */
 	public boolean cadastraDeputado(String data) {
 		this.funcao = new Deputado(data);
 		return true;
 	}
+
 	/**
-	 * Método utilizado para retornar a string partido.
-	 * @return
+	 * Metodo para acessar o partido de pessoa.
+	 * @return retorna o partido da pessoa, no formato String.
 	 */
 	public String getPartido() {
 		return partido;
 	}
+
 	/**
-	 * Método utilizado para exibir pessoa, caso tenha função ou não.
+	 * Metodo utilizado para exibir pessoa.
+	 * @return retorna uma String com a representacao textual de pessoa; adiciona um POL: caso a pessoa seja deputado.
 	 */
 	public String exibirPessoa() {
 		if (!(this.funcao == null)) {
@@ -48,14 +49,18 @@ public class PessoaComPartido extends Pessoa {
 			return toString();
 		}
 	}
+
 	/**
-	 * Método utilizado para retornar uma função do tipo função.
+	 * Metodo abstrato para acessar uma funcao.
+	 * @return retorna a funcao de pessoa, do tipo Funcao.
 	 */
 	public Funcao getFuncao() {
 		return funcao;
 	}
+
 	/**
-	 * Método é a representação textual.
+	 * Metodo para criar a representacao textual de uma pessoa.
+	 * @return retorna a representacao textual de pessoa, do tipo String.
 	 */
 	@Override
 	public String toString() {
@@ -72,6 +77,9 @@ public class PessoaComPartido extends Pessoa {
 		return this.nome + " - " + this.dni + " (" + this.estado + ") - " + this.partido +  " - Interesses: " + this.interesses + " - " + this.funcao.toString();
 	}
 
+	/**
+	 * Metodo para incrementar o contador de Leis criadas por um Deputado.
+	 */
 	public void criaLei(){
 		this.funcao.criaLei();
 	}

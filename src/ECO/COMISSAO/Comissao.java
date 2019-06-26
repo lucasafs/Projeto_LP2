@@ -6,54 +6,43 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Esta classe define uma comissão para permitir um discussão mais profunda 
- * sobre um determinado tema.
+ * Classe que cria uma comissao com deputados especialistas ao tema da comissao.
  */
 public class Comissao {
-    public String[][] interessesDeputados;
-    /**
-	 * Este atributo define o tema da comissão.
-	 */
+
     private String tema;
-    /**
-     * Este atributo organiza os deputados para uma comissão.
-     */
     private ArrayList<Pessoa> deputados;
+
     /**
-     * Construtor utilizado para construir uma comissão,
-     * a partir dos parâmetros passados: tema e deputados.
-     * @param tema
-     * @param deputados
+     * Construtor utilizado para construir uma comissão, a partir dos parâmetros passados: tema e deputados.
+     * @param tema Tema de interesse da comissao.
+     * @param deputados um ArrayList contendo os deputados participantes da comissao.
      */
     public Comissao(String tema, ArrayList<Pessoa> deputados){
         this.tema = tema;
         this.deputados = deputados;
     }
+
     /**
-     * Método utilizado para pegar o tema da comissão.
-     * @return
+     * Metodo utilizado para pegar o tema da comissao.
+     * @return retorna o tema da comissao do tipo String.
      */
     public String getTema() {
         return tema;
     }
 
-//    public int contaVotos(String status)
-//    {
-//        int contador = 0;
-//        boolean comparador = "GOVERNISTA".equals(status);
-//        for (Pessoa deputado: deputados){
-//            PessoaComPartido deputadoc = (PessoaComPartido) deputado;
-//            if (status.equals("GOVERNISTA")){
-//                if ()
-//                contador++;
-//            }
-//        }
-//        return contador;
-//    }
+    /**
+     * Metodo desenvolvido com o intuito de contar quantos deputados compoem a comissao.
+     * @return retorna a quantidade de deputados da comissao, do tipo int.
+     */
     public int getTamanhoComissao(){
         return deputados.size();
     }
 
+    /**
+     * Metodo desenvolvido para coletar todos os interesses de cada deputado da comissao.
+     * @return retorna uma lista de String com os interesses de cada deputado.
+     */
     public List<String> interessesDeputados(){
         List<String> interesses = new ArrayList<>();
         for (Pessoa pessoa: deputados){
@@ -62,6 +51,10 @@ public class Comissao {
         return interesses;
     }
 
+    /**
+     * Metodo desenvolvido para pegar os deputados que compoem a comissao.
+     * @return retorna um ArrayList de deputados.
+     */
     public ArrayList<Pessoa> getDeputados(){
         return this.deputados;
     }

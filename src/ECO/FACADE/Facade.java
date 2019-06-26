@@ -17,10 +17,7 @@ public class Facade {
     public Facade() {
         this.econtroller = new ECOntroller();
     }
-    /**
-     * Main para determinar o caminho para os casos de teste.
-     * @param args
-     */
+
 //    public static void main(String[] args) {
 //        args = new String[]{"ECO.FACADE.Facade", //"Projeto_LP2/acceptance_test/use_case_1.txt", "Projeto_LP2/acceptance_test/use_case_2.txt",
 //                //"Projeto_LP2/acceptance_test/use_case_3.txt", "Projeto_LP2/acceptance_test/use_case_4.txt", "Projeto_LP2/acceptance_test/use_case_5.txt",

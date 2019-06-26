@@ -1,32 +1,25 @@
 package ECO.PESSOA;
 
 /**
- * Esta classe define um deputado.
+ * Classe utilizada para a criacao de um Deputado, que implementa a interface Funcao, que contem a data de inicio da vida publica e o numero de leis que ele criou.
  */
 public class Deputado implements Funcao {
-	
-	/**
-	 * Este atributo representa uma data.
-	 */
+
     private String data;
-    
-    /**
-     * Este atributo representa a quantidade de leis.
-     */
     private int leis;
     
     /**
-     * Construtor que inicializa os atributos: data e leis;
-     * @param data
+     * Construtor utilizado para criar um Deputado com a data de inicio de sua vida publica.
+     * @param data Data de inicio da sua vida publica.
      */
     public Deputado(String data){
         this.data = data;
         this.leis = 0;
     }
-    
+
     /**
-     * Este é o método toString de Deputado que retorna
-     * a representação textual do mesmo.
+     * Metodo para criar a representacao textual de um Deputado.
+     * @return retorna a representacao textual de deputado, do tipo String.
      */
     @Override
     public String toString()
@@ -34,6 +27,9 @@ public class Deputado implements Funcao {
         return data.substring(0,2)+"/"+data.substring(2,4)+"/"+data.substring(4,8) + " - " + this.leis + " Leis";
     }
 
+    /**
+     * Metodo para incrementar o contador de Leis criadas por Deputado.
+     */
     public void criaLei(){
         this.leis++;
     }
