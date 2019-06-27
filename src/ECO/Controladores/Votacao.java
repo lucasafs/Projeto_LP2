@@ -42,7 +42,7 @@ public class Votacao {
                     contador++;
                 }
             } else {
-                if (interesseEmComumComissao(codigo)){
+                if (interesseEmComumComissao(codigo, deputadoc)){
                     contador++;
                 }
             }
@@ -115,15 +115,13 @@ public class Votacao {
 
 
 
-    private boolean interesseEmComumComissao(String codigo){
-        Comissao comissao = this.comissaoController.getComissao(this.propostaLeiController.getLocalAtual(codigo));
+    private boolean interesseEmComumComissao(String codigo, PessoaComPartido deputado){
 
         String[] interessesPL = this.propostaLeiController.getInteresses(codigo).split(",");
-        List<String> interessesDep = comissao.interessesDeputados();
-        for (String interesses: interessesDep){
-            String[] interesseSplitado = interesses.split(",");
+        String[] interessesDeputado = deputado.getInteresses().split(",");
+        for (String interesses: interessesDeputado){
             for (String interessesLei: interessesPL){
-                if (Arrays.asList(interesseSplitado).contains(interessesLei)){
+                if (interesses.equals(interessesLei)){
                     return true;
                 }
             }
