@@ -1,6 +1,6 @@
 package ECO.Controladores;
 
-import ECO.Pessoa;
+import ECO.PESSOA.Pessoa;
 
 import java.util.ArrayList;
 
@@ -11,11 +11,15 @@ public class ECOntroller {
     private PessoaController pessoaController;
     private ComissaoController comissaoController;
     private PropostaLeiController propostaLeiController;
+    private Votacao votacaoController;
+    private PartidoController partidoController;
 
     public ECOntroller() {
         this.pessoaController = new PessoaController();
         this.comissaoController = new ComissaoController();
         this.propostaLeiController = new PropostaLeiController();
+        this.partidoController = new PartidoController();
+        this.votacaoController = new Votacao(this.propostaLeiController,this.comissaoController,this.partidoController,this.pessoaController);
     }
 
     public void cadastrarPessoa(String nome, String dni, String estado, String interesses) {
@@ -35,11 +39,11 @@ public class ECOntroller {
     }
 
     public void cadastrarPartido(String partido){
-        pessoaController.cadastraPartido(partido);
+        partidoController.cadastraPartido(partido);
     }
 
     public String exibirBase(){
-        return pessoaController.exibirBase();
+        return partidoController.exibirBase();
     }
 
     public void cadastrarComissao(String tema, String politicos){
@@ -59,18 +63,21 @@ public class ECOntroller {
     public String cadastrarPL(String dni, int ano, String ementa, String interesses, String url, boolean conclusivo){
         validaCadastroLei(dni,ano,ementa,interesses,url);
         validaDNICadastroProjeto(dni);
+        this.pessoaController.verificaDeputado(dni,"Erro ao cadastrar projeto:");
         return this.propostaLeiController.cadastrarPL(dni, ano, ementa, interesses, url, conclusivo);
     }
 
     public String cadastrarPLP(String dni, int ano, String ementa, String interesses, String url, String artigos){
         validaCadastroLei(dni, ano, ementa, interesses, url, artigos);
         validaDNICadastroProjeto(dni);
+        this.pessoaController.verificaDeputado(dni,"Erro ao cadastrar projeto:");
         return this.propostaLeiController.cadastrarPLP(dni, ano, ementa, interesses, url, artigos);
     }
 
     public String cadastrarPEC(String dni, int ano, String ementa, String interesses, String url, String artigos){
         validaCadastroLei(dni, ano, ementa, interesses, url, artigos);
         validaDNICadastroProjeto(dni);
+        this.pessoaController.verificaDeputado(dni,"Erro ao cadastrar projeto:");
         return this.propostaLeiController.cadastrarPEC(dni, ano, ementa, interesses, url, artigos);
     }
 
@@ -79,14 +86,10 @@ public class ECOntroller {
     }
 
 	public boolean votarComissao(String codigo, String statusGovernista, String proximoLocal) {
-		if (!this.comissaoController.contemComissao(this.propostaLeiController.getLocalAtual(codigo))){
-		    throw new NullPointerException("Erro ao votar proposta: CCJC nao cadastrada");
-        }
-        return true;
-	}
+		return this.votacaoController.votarComissao(codigo, statusGovernista, proximoLocal);
+    }
 
 	public boolean votarPlenario(String codigo, String statusGovernista, String presentes) {
-		// TODO Auto-generated method stub
-		return false;
+		return this.votacaoController.votarPlenario(codigo, statusGovernista, presentes);
 	}
 }

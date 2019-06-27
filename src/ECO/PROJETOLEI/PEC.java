@@ -1,4 +1,4 @@
-package ECO;
+package ECO.PROJETOLEI;
 
 /**
  * Esta classe define uma propsota de emenda a constituição (PEC),
@@ -23,13 +23,22 @@ public class PEC extends LeiAbstract {
      */
     public PEC(String dni, int ano, String codigo, String ementa, String interesses, String url, String artigos) {
         super(dni, ano, codigo, ementa, interesses, url);
-        this.artigos = artigos;
+        this.artigos = String.join(", ",artigos.split(","));
     }
     /**
      * Este método é a representação textual para exibir a PEC.
      */
     @Override
     public String exibirProjeto() {
-        return "Projeto de Emenda Constitucional - " + this.codigo + " - " + this.autorDNI + " - " + this.ementa + " - " + this.artigos + " - " + this.situacao;
+        if (this.situacao.equals("EM VOTACAO")){
+            return "Projeto de Emenda Constitucional - " + this.codigo + " - " + this.autorDNI + " - " + this.ementa + " - " + this.artigos + " - " + super.getSituacaoComissao();
+        }
+        return "Projeto de Emenda Constitucional - " + this.codigo + " - " + this.autorDNI + " - " + this.ementa + " - " + this.artigos + " - " + super.getSituacao();
+    }
+
+    @Override
+    public boolean isConclusiva()
+    {
+        return false;
     }
 }

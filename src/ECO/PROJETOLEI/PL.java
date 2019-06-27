@@ -1,4 +1,4 @@
-package ECO;
+package ECO.PROJETOLEI;
 
 /**
  * Esta classe define os projetos de lei, tendo como base
@@ -33,9 +33,21 @@ public class PL extends LeiAbstract{
     @Override
     public String exibirProjeto() {
         if (this.conclusiva){
-            return "Projeto de Lei - " + this.codigo + " - " + this.autorDNI + " - " + this.ementa + " - Conclusiva - " + this.situacao;
+            if (this.situacao.equals("EM VOTACAO")){
+                return "Projeto de Lei - " + this.codigo + " - " + this.autorDNI + " - " + this.ementa + " - Conclusiva - " + super.getSituacaoComissao();
+            }
+            return "Projeto de Lei - " + this.codigo + " - " + this.autorDNI + " - " + this.ementa + " - Conclusiva - " + super.getSituacao();
         } else {
-            return "Projeto de Lei - " + this.codigo + " - " + this.autorDNI + " - " + this.ementa + " - " + this.situacao;
+            if (this.situacao.equals("EM VOTACAO")){
+                return "Projeto de Lei - " + this.codigo + " - " + this.autorDNI + " - " + this.ementa + " - " + super.getSituacaoComissao();
+            }
+            return "Projeto de Lei - " + this.codigo + " - " + this.autorDNI + " - " + this.ementa + " - " + super.getSituacao();
         }
+    }
+
+    @Override
+    public boolean isConclusiva()
+    {
+        return this.conclusiva;
     }
 }
