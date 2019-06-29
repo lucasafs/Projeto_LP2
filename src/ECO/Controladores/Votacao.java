@@ -10,6 +10,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+/**
+ * Classe composta por atributos e metodos necessarios para realizar votacoes tanto em comissao como no plenario.
+ */
 public class Votacao {
 
     private PropostaLeiController propostaLeiController;
@@ -17,6 +20,13 @@ public class Votacao {
     private PartidoController partidoController;
     private PessoaController pessoaController;
 
+    /**
+     * Construtor que recebe acesso aos demais controllers, necessarios para realizar a votacao.
+     * @param propostaLeiController Controller das Propostas de Leis.
+     * @param comissaoController Controller das comissoes.
+     * @param partidoController Controller dos partidos governistas.
+     * @param pessoaController Controller de Pessoa.
+     */
     public Votacao(PropostaLeiController propostaLeiController, ComissaoController comissaoController,
                    PartidoController partidoController, PessoaController pessoaController)
     {
@@ -26,6 +36,12 @@ public class Votacao {
         this.pessoaController = pessoaController;
     }
 
+    /**
+     * Metodo desenvolvido para realizar a contagem de votos em uma PL com base no apoio que ela recebe (Governista, Oposicao ou Livre).
+     * @param codigo Codigo do Projeto de Lei.
+     * @param statusGovernista Status de apoio da votacao.
+     * @return retorna true caso a base de apoio seja maioria ou false em demais casos.
+     */
     private boolean contaVotos(String codigo, String statusGovernista)
     {
         Comissao comissao = this.comissaoController.getComissao(this.propostaLeiController.getLocalAtual(codigo));
@@ -49,6 +65,12 @@ public class Votacao {
         } return (contador >= comissao.getTamanhoComissao() / 2 + 1);
     }
 
+    /**
+     * Metodo utilizado para validar a Comissao antes de realizar a votacao.
+     * @param codigo Codigo do Projeto de Lei.
+     * @param statusGovernista Status de apoio da votacao.
+     * @param proximoLocal Local a qual a PL sera encaminhada.
+     */
     private void validaVotarComissao(String codigo, String statusGovernista, String proximoLocal){
         if (proximoLocal == null || "".equals(proximoLocal.trim())){
             throw new IllegalArgumentException("Erro ao votar proposta: proximo local vazio");
@@ -73,6 +95,13 @@ public class Votacao {
         }
     }
 
+    /**
+     * Metodo utilizado para realizar a votacao em comissao.
+     * @param codigo Codigo dao Projeto de Lei.
+     * @param statusGovernista Status de apoio a votacao.
+     * @param proximoLocal Local a qual o Projeto sera encaminhado apos votacao.
+     * @return retorna true caso aprovada ou false em demais casos.
+     */
     public boolean votarComissao(String codigo, String statusGovernista, String proximoLocal) {
         validaVotarComissao(codigo, statusGovernista, proximoLocal);
         if (!this.propostaLeiController.getProposta(codigo).getSituacao().equals("EM VOTACAO")) {
@@ -113,8 +142,12 @@ public class Votacao {
         return false;
     }
 
-
-
+    /**
+     * Metodo privado com o intuito de verificar se o Deputado contem algum interesse em comum com o Projeto de Lei votada na comissao.
+     * @param codigo Codigo do Projeto de Lei.
+     * @param deputado Deputado a votar.
+     * @return retorna true caso tenha algum interesse em comum e false em demais casos.
+     */
     private boolean interesseEmComumComissao(String codigo, PessoaComPartido deputado){
 
         String[] interessesPL = this.propostaLeiController.getInteresses(codigo).split(",");
@@ -128,6 +161,11 @@ public class Votacao {
         } return false;
     }
 
+    /**
+     * Metodo privado utilizado para validar a votacao no Plenario.
+     * @param codigo Codigo do Projeto de Lei.
+     * @param deputados Deputados presentes para a votacao.
+     */
     private void validaVotacaoPlenario(String codigo, String deputados){
         String situacao = this.propostaLeiController.getProposta(codigo).getSituacao();
         String local = this.propostaLeiController.getLocalAtual(codigo);
@@ -152,7 +190,13 @@ public class Votacao {
 
     }
 
-
+    /**
+     * Metodo utilizado para realizar a votacao no Plenario.
+     * @param codigo Codigo do Projeto de Lei.
+     * @param statusGovernista Status de apoio a votacao.
+     * @param presentes Deputados presentes para a votacao.
+     * @return retorna true caso seja aprovada ou false em demais casos.
+     */
     public boolean votarPlenario(String codigo, String statusGovernista, String presentes) {
         validaVotacaoPlenario(codigo,presentes);
 
@@ -184,6 +228,13 @@ public class Votacao {
         }
     }
 
+    /**
+     * Metodo privado utilizado para realizar a contagem de votos no plenario, com base no apoio recebido.
+     * @param codigo Codigo do Projeto de Lei.
+     * @param presentes Deputados Presentes na votacao.
+     * @param statusGovernista Status de apoio a votacao.
+     * @return retorna true caso os votos seja maioria ou false em demais casos.
+     */
     private boolean contaVotosPlenario(String codigo, String presentes, String statusGovernista) {
         String[] deputadosDNI = presentes.split(",");
 
@@ -214,6 +265,12 @@ public class Votacao {
         return false;
     }
 
+    /**
+     * Metodo privado com o intuito de verificar se o Deputado contem algum interesse em comum com o Projeto de Lei votado no Plenario.
+     * @param codigo Codigo do Projeto de Lei.
+     * @param deputado Deputado a votar.
+     * @return retorna true caso tenha interesse em comum ou false em demais casos.
+     */
     private boolean interesseEmComumPlenario(String codigo,PessoaComPartido deputado) {
         String[] interessesPL = this.propostaLeiController.getInteresses(codigo).split(",");
         String[] interessesDep = deputado.getInteresses().split(",");

@@ -77,22 +77,42 @@ public abstract class LeiAbstract{
         this.tramitacao.put(localAtual,status);
     }
 
+    /**
+     * Metodo abstrato para verificar se o Projeto de Lei e conclusiva.
+     * @return retorna true caso seja e false em demais casos.
+     */
     public abstract boolean isConclusiva();
 
+    /**
+     * Metodo para alterar a situacao atual do Projeto de Lei.
+     * @param status Novo status da situacao.
+     */
     public void setSituacao(String status){
         this.situacao = status;
     }
 
+    /**
+     * Metodo para acessar a situacao na comissao em que se encontra.
+     * @return retorna uma String com a situacao e a comissao.
+     */
     public String getSituacaoComissao()
     {
         return situacao  + " (" + this.comissaoAtual + ")";
     }
 
+    /**
+     * Metodo para acessar a situacao do projeto.
+     * @return retorna uma String com a situacao do projeto.
+     */
     public String getSituacao()
     {
         return situacao ;
     }
 
+    /**
+     * Metodo para acessar o DNI do autor responsavel pelo Projeto de Lei.
+     * @return retorna uma String com o DNI do autor.
+     */
     public String getAutorDNI() {
         return autorDNI;
     }
