@@ -1,0 +1,288 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement />
+  <nodes>
+    <node x="2337.4487916712915" y="1051.0">ECO.Controladores.ComissaoController</node>
+    <node x="2247.75" y="630.5">ECO.COMISSAO.Comissao</node>
+    <node x="1650.843931623932" y="1436.0">ECO.Controladores.Votacao</node>
+    <node x="1364.7814530839532" y="608.5">ECO.PESSOA.PessoaComPartido</node>
+    <node x="1568.9934345284346" y="996.0">ECO.Controladores.PessoaController</node>
+    <node x="29.781453083953238" y="641.0">ECO.PROJETOLEI.PLP</node>
+    <node x="341.78145308395324" y="652.5">ECO.PROJETOLEI.PL</node>
+    <node x="971.7814530839532" y="565.0">Util.Validador</node>
+    <node x="1953.6306313131313" y="179.0">ECO.PESSOA.Pessoa</node>
+    <node x="1277.7546459096461" y="223.5">ECO.PESSOA.Deputado</node>
+    <node x="1756.0314530839532" y="1844.0">ECO.Controladores.ECOntroller</node>
+    <node x="658.7814530839532" y="641.0">ECO.PROJETOLEI.PEC</node>
+    <node x="1470.022005957006" y="0.0">ECO.PESSOA.Funcao</node>
+    <node x="0.0" y="908.0">ECO.Controladores.PropostaLeiController</node>
+    <node x="1721.7814530839532" y="630.5">ECO.PESSOA.PessoaSemPartido</node>
+    <node x="2128.4487916712915" y="1051.0">ECO.Controladores.PartidoController</node>
+    <node x="1745.0314530839532" y="2344.0">ECO.FACADE.Facade</node>
+    <node x="174.04700595700592" y="124.0">ECO.PROJETOLEI.LeiAbstract</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="ECO.Controladores.PropostaLeiController" target="ECO.PROJETOLEI.PL">
+      <point x="70.0" y="-214.0" />
+      <point x="245.0" y="878.0" />
+      <point x="416.03145308395324" y="878.0" />
+      <point x="-74.25" y="49.0" />
+    </edge>
+    <edge source="ECO.Controladores.ECOntroller" target="Util.Validador">
+      <point x="-98.875" y="-225.0" />
+      <point x="1826.6564530839532" y="1804.0" />
+      <point x="1065.0314530839532" y="1804.0" />
+      <point x="-93.25" y="136.5" />
+    </edge>
+    <edge source="ECO.Controladores.PessoaController" target="ECO.PESSOA.PessoaComPartido">
+      <point x="-97.71428571428578" y="-126.0" />
+      <point x="1642.2791488141488" y="868.0" />
+      <point x="1533.2814530839532" y="868.0" />
+      <point x="0.0" y="93.0" />
+    </edge>
+    <edge source="ECO.Controladores.PessoaController" target="ECO.PESSOA.PessoaSemPartido">
+      <point x="48.85714285714289" y="-126.0" />
+      <point x="1788.8505773855775" y="868.0" />
+      <point x="1928.0314530839532" y="868.0" />
+      <point x="68.75" y="71.0" />
+    </edge>
+    <edge source="ECO.Controladores.Votacao" target="ECO.Controladores.PartidoController">
+      <point x="114.69230769230762" y="-159.0" />
+      <point x="2014.0362393162395" y="1386.0" />
+      <point x="2152.0737916712915" y="1386.0" />
+      <point x="-70.875" y="71.0" />
+    </edge>
+    <edge source="ECO.PESSOA.PessoaSemPartido" target="ECO.PESSOA.Funcao">
+      <point x="-91.66666666666674" y="-71.0" />
+      <point x="1767.6147864172865" y="485.0" />
+      <point x="1756.2553392903392" y="485.0" />
+      <point x="1756.2553392903392" y="104.0" />
+      <point x="1561.722005957006" y="104.0" />
+      <point x="26.200000000000045" y="37.0" />
+    </edge>
+    <edge source="ECO.Controladores.Votacao" target="ECO.Controladores.PropostaLeiController">
+      <point x="-229.38461538461536" y="-159.0" />
+      <point x="1669.9593162393164" y="1406.0" />
+      <point x="218.75" y="1406.0" />
+      <point x="43.75" y="214.0" />
+    </edge>
+    <edge source="ECO.Controladores.ComissaoController" target="ECO.PESSOA.Pessoa">
+      <point x="114.375" y="-71.0" />
+      <point x="2604.3237916712915" y="868.0" />
+      <point x="2519.0" y="868.0" />
+      <point x="2519.0" y="525.0" />
+      <point x="2138.4488131313133" y="525.0" />
+      <point x="77.81818181818176" y="115.5" />
+    </edge>
+    <edge source="ECO.Controladores.PessoaController" target="ECO.PESSOA.Pessoa">
+      <point x="146.57142857142856" y="-126.0" />
+      <point x="1886.5648630998633" y="888.0" />
+      <point x="2018.2814530839532" y="888.0" />
+      <point x="2018.2814530839532" y="545.0" />
+      <point x="2060.6306313131313" y="545.0" />
+      <point x="0.0" y="115.5" />
+    </edge>
+    <edge source="ECO.Controladores.ECOntroller" target="ECO.Controladores.PropostaLeiController">
+      <point x="-155.375" y="-225.0" />
+      <point x="1770.1564530839532" y="1824.0" />
+      <point x="82.78145308395324" y="1824.0" />
+      <point x="82.78145308395324" y="1416.0" />
+      <point x="43.75" y="1416.0" />
+      <point x="-131.25" y="214.0" />
+    </edge>
+    <edge source="ECO.Controladores.Votacao" target="ECO.COMISSAO.Comissao">
+      <point x="76.46153846153857" y="-159.0" />
+      <point x="1975.8054700854705" y="1376.0" />
+      <point x="2090.992060902061" y="1376.0" />
+      <point x="2090.992060902061" y="888.0" />
+      <point x="2275.625" y="888.0" />
+      <point x="-83.625" y="71.0" />
+    </edge>
+    <edge source="ECO.PESSOA.Deputado" target="ECO.PESSOA.Funcao">
+      <point x="0.0" y="-71.0" />
+      <point x="1348.2546459096461" y="104.0" />
+      <point x="1509.322005957006" y="104.0" />
+      <point x="-26.200000000000045" y="37.0" />
+    </edge>
+    <edge source="ECO.Controladores.PessoaController" target="Util.Validador">
+      <point x="-146.57142857142856" y="-126.0" />
+      <point x="1593.4220059570061" y="878.0" />
+      <point x="1251.5314530839532" y="878.0" />
+      <point x="93.25" y="136.5" />
+    </edge>
+    <edge source="ECO.PROJETOLEI.PLP" target="ECO.PROJETOLEI.LeiAbstract">
+      <point x="73.0" y="-60.5" />
+      <point x="248.78145308395324" y="545.0" />
+      <point x="302.6720059570059" y="545.0" />
+      <point x="-18.375" y="170.5" />
+    </edge>
+    <edge source="ECO.PESSOA.PessoaSemPartido" target="ECO.PESSOA.Pessoa">
+      <point x="0.0" y="-71.0" />
+      <point x="1859.2814530839532" y="515.0" />
+      <point x="2002.266994949495" y="515.0" />
+      <point x="-58.363636363636374" y="115.5" />
+    </edge>
+    <edge source="ECO.Controladores.ECOntroller" target="ECO.Controladores.Votacao">
+      <point x="14.125" y="-225.0" />
+      <point x="1939.6564530839532" y="1774.0" />
+      <point x="2023.593931623932" y="1774.0" />
+      <point x="124.25" y="159.0" />
+    </edge>
+    <edge source="ECO.PROJETOLEI.PEC" target="ECO.PROJETOLEI.LeiAbstract">
+      <point x="73.25" y="-60.5" />
+      <point x="878.5314530839532" y="515.0" />
+      <point x="449.6720059570059" y="515.0" />
+      <point x="128.625" y="170.5" />
+    </edge>
+    <edge source="ECO.PESSOA.Pessoa" target="ECO.PESSOA.Funcao">
+      <point x="0.0" y="-115.5" />
+      <point x="2060.6306313131313" y="94.0" />
+      <point x="1587.922005957006" y="94.0" />
+      <point x="52.39999999999998" y="37.0" />
+    </edge>
+    <edge source="ECO.Controladores.ComissaoController" target="ECO.COMISSAO.Comissao">
+      <point x="-38.125" y="-71.0" />
+      <point x="2451.8237916712915" y="888.0" />
+      <point x="2387.125" y="888.0" />
+      <point x="27.875" y="71.0" />
+    </edge>
+    <edge source="ECO.Controladores.ECOntroller" target="ECO.PESSOA.Pessoa">
+      <point x="155.375" y="-225.0" />
+      <point x="2080.9064530839532" y="1824.0" />
+      <point x="2652.9487916712915" y="1824.0" />
+      <point x="2652.9487916712915" y="515.0" />
+      <point x="2157.9033585858588" y="515.0" />
+      <point x="97.27272727272725" y="115.5" />
+    </edge>
+    <edge source="ECO.Controladores.ECOntroller" target="ECO.Controladores.ComissaoController">
+      <point x="127.125" y="-225.0" />
+      <point x="2052.6564530839532" y="1814.0" />
+      <point x="2567.7613131313133" y="1814.0" />
+      <point x="2567.7613131313133" y="1416.0" />
+      <point x="2604.3237916712915" y="1416.0" />
+      <point x="114.375" y="71.0" />
+    </edge>
+    <edge source="ECO.FACADE.Facade" target="ECO.Controladores.ECOntroller">
+      <point x="90.25" y="-225.0" />
+      <point x="2015.7814530839532" y="2319.0" />
+      <point x="2010.2814530839532" y="2319.0" />
+      <point x="84.75" y="225.0" />
+    </edge>
+    <edge source="ECO.Controladores.Votacao" target="ECO.Controladores.PessoaController">
+      <point x="0.0" y="-159.0" />
+      <point x="1899.343931623932" y="1416.0" />
+      <point x="1868.2434345284346" y="1416.0" />
+      <point x="128.25" y="126.0" />
+    </edge>
+    <edge source="ECO.Controladores.PropostaLeiController" target="ECO.PROJETOLEI.PEC">
+      <point x="140.0" y="-214.0" />
+      <point x="315.0" y="888.0" />
+      <point x="732.0314530839532" y="888.0" />
+      <point x="-73.25" y="60.5" />
+    </edge>
+    <edge source="ECO.Controladores.PropostaLeiController" target="ECO.PROJETOLEI.PLP">
+      <point x="0.0" y="-214.0" />
+      <point x="0.0" y="60.5" />
+    </edge>
+    <edge source="ECO.PROJETOLEI.PL" target="ECO.PROJETOLEI.LeiAbstract">
+      <point x="-74.25" y="-49.0" />
+      <point x="416.03145308395324" y="545.0" />
+      <point x="339.4220059570059" y="545.0" />
+      <point x="18.375" y="170.5" />
+    </edge>
+    <edge source="ECO.PESSOA.PessoaComPartido" target="ECO.PESSOA.Pessoa">
+      <point x="67.39999999999998" y="-93.0" />
+      <point x="1600.6814530839533" y="495.0" />
+      <point x="1963.3579040404043" y="495.0" />
+      <point x="-97.27272727272725" y="115.5" />
+    </edge>
+    <edge source="ECO.Controladores.Votacao" target="ECO.PROJETOLEI.PL">
+      <point x="-152.9230769230769" y="-159.0" />
+      <point x="1746.420854700855" y="1386.0" />
+      <point x="564.5314530839531" y="1386.0" />
+      <point x="74.25" y="49.0" />
+    </edge>
+    <edge source="ECO.PESSOA.PessoaComPartido" target="ECO.PESSOA.Deputado">
+      <point x="-67.39999999999998" y="-93.0" />
+      <point x="1465.8814530839531" y="535.0" />
+      <point x="1348.2546459096461" y="535.0" />
+      <point x="0.0" y="71.0" />
+    </edge>
+    <edge source="ECO.Controladores.Votacao" target="ECO.PROJETOLEI.PEC">
+      <point x="-114.69230769230762" y="-159.0" />
+      <point x="1784.6516239316243" y="1376.0" />
+      <point x="878.5314530839532" y="1376.0" />
+      <point x="73.25" y="60.5" />
+    </edge>
+    <edge source="ECO.Controladores.Votacao" target="ECO.PESSOA.PessoaComPartido">
+      <point x="-76.46153846153845" y="-159.0" />
+      <point x="1822.8823931623933" y="1366.0" />
+      <point x="1437.9263772338772" y="1366.0" />
+      <point x="1437.9263772338772" y="888.0" />
+      <point x="1420.94811975062" y="888.0" />
+      <point x="-112.33333333333331" y="93.0" />
+    </edge>
+    <edge source="ECO.Controladores.ECOntroller" target="ECO.Controladores.PartidoController">
+      <point x="42.375" y="-225.0" />
+      <point x="1967.9064530839532" y="1784.0" />
+      <point x="2246.5737916712915" y="1784.0" />
+      <point x="23.625" y="71.0" />
+    </edge>
+    <edge source="ECO.Controladores.PropostaLeiController" target="ECO.PROJETOLEI.LeiAbstract">
+      <point x="-140.0" y="-214.0" />
+      <point x="35.0" y="888.0" />
+      <point x="8.281453083953238" y="888.0" />
+      <point x="8.281453083953238" y="515.0" />
+      <point x="192.42200595700592" y="515.0" />
+      <point x="-128.625" y="170.5" />
+    </edge>
+    <edge source="ECO.Controladores.Votacao" target="ECO.PESSOA.Pessoa">
+      <point x="38.23076923076928" y="-159.0" />
+      <point x="1937.5747008547012" y="1366.0" />
+      <point x="2067.023513986014" y="1366.0" />
+      <point x="2067.023513986014" y="545.0" />
+      <point x="2080.085176767677" y="545.0" />
+      <point x="19.454545454545496" y="115.5" />
+    </edge>
+    <edge source="ECO.Controladores.Votacao" target="ECO.Controladores.ComissaoController">
+      <point x="191.1538461538462" y="-159.0" />
+      <point x="2090.497777777778" y="1406.0" />
+      <point x="2375.5737916712915" y="1406.0" />
+      <point x="-114.375" y="71.0" />
+    </edge>
+    <edge source="ECO.COMISSAO.Comissao" target="ECO.PESSOA.Pessoa">
+      <point x="55.75" y="-71.0" />
+      <point x="2415.0" y="535.0" />
+      <point x="2118.994267676768" y="535.0" />
+      <point x="58.36363636363626" y="115.5" />
+    </edge>
+    <edge source="ECO.PESSOA.PessoaComPartido" target="ECO.PESSOA.Funcao">
+      <point x="0.0" y="-93.0" />
+      <point x="1533.2814530839532" y="104.0" />
+      <point x="1535.522005957006" y="104.0" />
+      <point x="0.0" y="37.0" />
+    </edge>
+    <edge source="ECO.Controladores.ECOntroller" target="ECO.Controladores.PessoaController">
+      <point x="-42.375" y="-225.0" />
+      <point x="1883.1564530839532" y="1784.0" />
+      <point x="1640.343931623932" y="1784.0" />
+      <point x="1640.343931623932" y="1416.0" />
+      <point x="1697.2434345284346" y="1416.0" />
+      <point x="-42.75" y="126.0" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="0.40000000000000013" x="-273.1666666666663" y="66.00000000000045" />
+  <SelectedNodes />
+  <Categories>
+    <Category>Fields</Category>
+    <Category>Constructors</Category>
+    <Category>Methods</Category>
+    <Category>Properties</Category>
+    <Category>Inner Classes</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+
