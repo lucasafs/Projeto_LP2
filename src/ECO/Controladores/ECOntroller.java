@@ -6,6 +6,9 @@ import java.util.ArrayList;
 
 import static Util.Validador.*;
 
+/**
+ * Controller principal que unifica os controllers de nivel mais baixo.
+ */
 public class ECOntroller {
 
     private PessoaController pessoaController;
@@ -14,6 +17,9 @@ public class ECOntroller {
     private Votacao votacaoController;
     private PartidoController partidoController;
 
+    /**
+     * Construtor que inicializa os controllers especificos.
+     */
     public ECOntroller() {
         this.pessoaController = new PessoaController();
         this.comissaoController = new ComissaoController();
