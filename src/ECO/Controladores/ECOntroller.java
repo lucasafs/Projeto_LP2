@@ -186,4 +186,8 @@ public class ECOntroller {
 		return this.votacaoController.votarPlenario(codigo, statusGovernista, presentes);
 	}
 
+	public String exibirTramitacao(String codigo) {
+		return this.propostaLeiController.exibirTramitacao(codigo);
+	}
+
 }

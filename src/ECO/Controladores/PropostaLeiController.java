@@ -17,6 +17,7 @@ public class PropostaLeiController {
     private Map<Integer,Integer> contLeisPL;
     private Map<Integer,Integer> contLeisPLP;
     private Map<Integer,Integer> contLeisPEC;
+    
 
     /**
      * Construtor que inicializa um HashMap para armazenar as Propostas de Leis,
@@ -184,5 +185,15 @@ public class PropostaLeiController {
      */
     public void setComissaoAtual(String codigo, String comissaoAtual){
         this.propostaLeiMap.get(codigo).setComissaoAtual(comissaoAtual);
+    }
+    
+    public void setSituacaoComissao(String codigo) {
+    	String situacao = this.propostaLeiMap.get(codigo).getSituacao();
+    	String comissao = this.propostaLeiMap.get(codigo).getComissaoAtual();
+    	this.propostaLeiMap.get(codigo).adicionaTramitacao(situacao, comissao);
+    }
+    
+    public String exibirTramitacao(String codigo) {
+    	return this.propostaLeiMap.get(codigo).exibirTramitacao();
     }
 }
