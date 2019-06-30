@@ -27,16 +27,19 @@ public abstract class Pessoa {
 	/**
 	 * Metodo abstrato para realizar o cadastro de um Deputado.
 	 * @param data data de inicio de mandato.
+	 * @return retorna true caso consiga realizar o cadastro.
 	 */
 	public abstract boolean cadastraDeputado(String data);
 
 	/**
 	 * Metodo abstrato utilizado para exibir pessoa.
+	 * @return retorna a exibição de pessoa.
 	 */
 	public abstract String exibirPessoa();
 
 	/**
 	 * Metodo abstrato para acessar uma funcao.
+	 * @return retorna a Função da pessoa.
 	 */
 	public abstract Funcao getFuncao();
 

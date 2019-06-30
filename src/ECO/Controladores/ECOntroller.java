@@ -34,7 +34,6 @@ public class ECOntroller {
      * @param dni DNI da pessoa.
      * @param estado Estado no qual a Pessoa se encontra.
      * @param interesses Interesses da pessoa.
-     * @return retorna true caso consiga realizar o cadastro.
      */
     public void cadastrarPessoa(String nome, String dni, String estado, String interesses) {
         pessoaController.cadastrarPessoa(nome, dni, estado, interesses);
@@ -47,7 +46,6 @@ public class ECOntroller {
      * @param estado Estado no qual a Pessoa se encontra.
      * @param interesses Interesses da pessoa.
      * @param partido Partido que a pessoa apoia.
-     * @return retorna true caso consiga realizar o cadastro.
      */
     public void cadastrarPessoa(String nome, String dni, String estado, String interesses, String partido) {
         pessoaController.cadastrarPessoa(nome, dni, estado, interesses, partido);
@@ -57,7 +55,6 @@ public class ECOntroller {
      * Metodo utilizado para realizar o Cadastro de um Deputado.
      * @param DNI DNI da pessoa.
      * @param dataDeInicio Data de inicio da vida publica.
-     * @return retorna true caso consiga realizar o cadastro.
      */
     public void cadastrarDeputado(String DNI, String dataDeInicio) {
         pessoaController.cadastrarDeputado(DNI, dataDeInicio);
