@@ -117,4 +117,12 @@ public abstract class LeiAbstract{
         return autorDNI;
     }
     
+    public String exibirTramitacao() {
+    	String aux = "";
+    	for (String t : this.tramitacao.keySet()) {
+    		aux += t +", " + tramitacao.get(t);
+    	}
+    	return aux;
+    }
+    
 }

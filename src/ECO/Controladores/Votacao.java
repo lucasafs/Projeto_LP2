@@ -118,7 +118,7 @@ public class Votacao {
                 }
             } else {
                 if ("plenario".equals(proximoLocal)) {
-                    this.propostaLeiController.setComissaoAtual(codigo, "Plenario - 1o turno");
+                    this.propostaLeiController.setComissaoAtual(codigo, "Plenario");
                 } else {
                     this.propostaLeiController.setComissaoAtual(codigo, proximoLocal);
                 }
@@ -184,7 +184,7 @@ public class Votacao {
                 throw new RuntimeException("Erro ao votar proposta: quorum invalido");
             }
         }
-        if (!("Plenario - 1o turno".equals(local)||"Plenario - 2o turno".equals(local))){
+        if (!("Plenario - 1o turno".equals(local)||"Plenario - 2o turno".equals(local)||"Plenario".equals(local))){
             throw new RuntimeException("Erro ao votar proposta: tramitacao em comissao");
         }
 

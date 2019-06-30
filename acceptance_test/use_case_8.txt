@@ -1,0 +1,48 @@
+# carrega o sistema
+carregarSistema
+
+# PLs
+
+expect "APROVADO (CCJC), REJEITADO (CTF)" exibirTramitacao codigo="PL 1/2016"
+expect "REJEITADO (CCJC)" exibirTramitacao codigo="PL 2/2016"
+expect "APROVADO (CCJC), APROVADO (CGOV)" exibirTramitacao codigo="PL 3/2016"
+
+pltramit=cadastrarPL dni="071333333-0" ano=2016 ementa="Ementa PLnconc" interesses="cidadania,educacao basica" url="http://example.com/semana_cidadania" conclusivo=false
+expect "EM VOTACAO (CCJC)" exibirTramitacao codigo=${pltramit}
+
+expect true votarComissao codigo=${pltramit} statusGovernista="GOVERNISTA" proximoLocal="CGOV"
+expect true votarComissao codigo=${pltramit} statusGovernista="GOVERNISTA" proximoLocal="plenario"
+expect "APROVADO (CCJC), APROVADO (CGOV), EM VOTACAO (Plenario)" exibirTramitacao codigo=${pltramit}
+
+expect false votarPlenario codigo=${pltramit} statusGovernista="OPOSICAO" presentes="071111111-0,071222222-0,071333333-0,071777777-0,071888888-0,071999999-0"
+expect "APROVADO (CCJC), APROVADO (CGOV), REJEITADO (Plenario)" exibirTramitacao codigo=${pltramit}
+
+########## PLP
+
+expect "APROVADO (CCJC), APROVADO (CGOV), REJEITADO (Plenario - 1o turno)" exibirTramitacao codigo="PLP 1/2016"
+
+plp3=cadastrarPLP dni="071222222-0" ano=2013 ementa="Ementa PLP" interesses="saude" url="https://example.net/jogos%40aposta" artigos="153"
+
+expect "EM VOTACAO (CCJC)" exibirTramitacao codigo=${plp3}
+expect true votarComissao codigo=${plp3} statusGovernista="GOVERNISTA" proximoLocal="CGOV"
+expect "APROVADO (CCJC), EM VOTACAO (CGOV)" exibirTramitacao codigo=${plp3}
+
+expect true votarComissao codigo=${plp3} statusGovernista="GOVERNISTA" proximoLocal="plenario"
+expect "APROVADO (CCJC), APROVADO (CGOV), EM VOTACAO (Plenario - 1o turno)" exibirTramitacao codigo=${plp3}
+
+expect true votarPlenario codigo=${plp3} statusGovernista="LIVRE" presentes="071111111-0,071222222-0,071333333-0,071444444-0,071555555-0,071666666-0,071777777-0"
+expect "APROVADO (CCJC), APROVADO (CGOV), APROVADO (Plenario - 1o turno), EM VOTACAO (Plenario - 2o turno)" exibirTramitacao codigo=${plp3}
+
+expect true votarPlenario codigo=${plp3} statusGovernista="LIVRE" presentes="071111111-0,071222222-0,071333333-0,071444444-0,071555555-0,071666666-0,071777777-0"
+expect "APROVADO (CCJC), APROVADO (CGOV), APROVADO (Plenario - 1o turno), APROVADO (Plenario - 2o turno)" exibirTramitacao codigo=${plp3}
+
+########## PEC
+
+expect "APROVADO (CCJC), APROVADO (CGOV), REJEITADO (Plenario - 1o turno)" exibirTramitacao codigo="PEC 1/2016"
+expect "APROVADO (CCJC), APROVADO (CGOV), APROVADO (Plenario - 1o turno), APROVADO (Plenario - 2o turno)" exibirTramitacao codigo="PEC 2/2016"
+
+expectError "Erro ao exibir tramitacao: projeto inexistente" exibirTramitacao codigo="PP 3/2012"
+expectError "Erro ao exibir tramitacao: projeto inexistente" exibirTramitacao codigo="PP 3/2012"
+
+# salva o sistema em arquivos
+salvarSistema
