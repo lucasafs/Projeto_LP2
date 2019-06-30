@@ -6,6 +6,9 @@ import java.util.ArrayList;
 
 import static Util.Validador.*;
 
+/**
+ * Controller principal que unifica os controllers de nivel mais baixo.
+ */
 public class ECOntroller {
 
     private PessoaController pessoaController;
@@ -14,6 +17,9 @@ public class ECOntroller {
     private Votacao votacaoController;
     private PartidoController partidoController;
 
+    /**
+     * Construtor que inicializa os controllers especificos.
+     */
     public ECOntroller() {
         this.pessoaController = new PessoaController();
         this.comissaoController = new ComissaoController();
@@ -71,6 +77,7 @@ public class ECOntroller {
      * @param partido String contendo o nome do partido
      */
     public void cadastrarPartido(String partido){
+        if(partido == null || partido.equals("")) throw new NullPointerException("Erro ao cadastrar partido: partido nao pode ser vazio ou nulo");
         partidoController.cadastraPartido(partido);
     }
 
