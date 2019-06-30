@@ -11,8 +11,7 @@ import static Util.Validador.*;
 /**
  * Controller que contem metodos e atributos utilizados para criar e cuidar de Pessoa.
  */
-public class PessoaController
-{
+public class PessoaController {
     private Map<String, Pessoa> pessoaMap;
 
     /**

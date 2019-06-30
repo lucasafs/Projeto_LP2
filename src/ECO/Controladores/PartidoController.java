@@ -22,7 +22,6 @@ public class PartidoController {
      * @param partido String contendo o nome do partido
      */
     public void cadastraPartido(String partido){
-        if(partido == null || partido.equals("")) throw new NullPointerException("Erro ao cadastrar partido: partido nao pode ser vazio ou nulo");
         partidoMap.add(partido);
     }
 

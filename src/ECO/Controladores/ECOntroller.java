@@ -71,6 +71,7 @@ public class ECOntroller {
      * @param partido String contendo o nome do partido
      */
     public void cadastrarPartido(String partido){
+        if(partido == null || partido.equals("")) throw new NullPointerException("Erro ao cadastrar partido: partido nao pode ser vazio ou nulo");
         partidoController.cadastraPartido(partido);
     }
 
